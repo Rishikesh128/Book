@@ -2,512 +2,379 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I LOVE YOU MORE PAPA — ऋषि की लेखनी</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#241a30">
+<title>ऋषि की लेखनी — R. D. Tiwari</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📖%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Mukta:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#241a30;
-    --ink-2:#2f2140;
-    --plum:#5a3556;
-    --ember:#a6534a;
-    --marigold:#e8863f;
-    --gold:#f6b25a;
-    --cream:#f7ead9;
-    --paper:#f8efe0;
-    --paper-edge:#e9d9bb;
-    --text-ink:#2b2018;
-    --text-muted:#7a6a58;
-    --font-display:'Tiro Devanagari Hindi', serif;
-    --font-body:'Mukta', sans-serif;
-    --font-sign:'Cormorant Garamond', serif;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--font-body);
-    background:var(--ink);
-    color:var(--cream);
-    overflow-x:hidden;
-  }
-  ::selection{ background:var(--gold); color:var(--ink); }
+:root{
+  --ink:#241a30; --ink-2:#2f2140; --plum:#5a3556; --ember:#a6534a;
+  --marigold:#e8863f; --gold:#f6b25a; --cream:#f7ead9;
+  --font-display:'Tiro Devanagari Hindi','Noto Serif Devanagari',serif;
+  --font-body:'Mukta','Noto Sans Devanagari',sans-serif;
+  --font-sign:'Cormorant Garamond',serif;
+  --font-book:'Tiro Devanagari Hindi','Noto Serif Devanagari','Mukta',serif;
+  --flip:.85s;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--font-body);background:#150f20;color:var(--cream);overscroll-behavior:none}
+::selection{background:var(--gold);color:var(--ink)}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:80px 24px 140px;
-    background:linear-gradient(180deg, #1b1428 0%, var(--ink) 35%, var(--plum) 75%, var(--ember) 100%);
-    overflow:hidden;
-  }
-  .stars span{
-    position:absolute;
-    width:2px; height:2px;
-    background:var(--cream);
-    border-radius:50%;
-    opacity:.6;
-    animation:twinkle 3.4s ease-in-out infinite;
-  }
-  @keyframes twinkle{ 0%,100%{opacity:.15;} 50%{opacity:.85;} }
+/* ---------- living background (whole app) ---------- */
+.world{position:fixed;inset:0;z-index:0;overflow:hidden;background:linear-gradient(180deg,#110b1b 0%,#231a30 36%,#4b2d4d 72%,#93504a 100%)}
+.stars span{position:absolute;width:2px;height:2px;background:var(--cream);border-radius:50%;opacity:.5;animation:twinkle 3.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.12}50%{opacity:.85}}
+.moon{position:absolute;top:8%;right:9%;width:clamp(54px,6vw,86px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff4dc,#f3d9a4 60%,#e8c17a);box-shadow:0 0 60px 18px rgba(246,178,90,.2),0 0 180px 70px rgba(246,178,90,.09)}
+.ghat{position:absolute;left:0;right:0;bottom:0;height:clamp(70px,15vh,150px);background:#2a1d3a;opacity:.9;z-index:2;
+  clip-path:polygon(0% 100%,0% 45%,5% 58%,12% 32%,19% 60%,27% 22%,35% 54%,43% 36%,51% 62%,59% 26%,67% 52%,75% 16%,83% 50%,91% 30%,100% 56%,100% 100%)}
+.river{position:absolute;left:0;right:0;bottom:0;height:90px;z-index:1;overflow:hidden}
+.river i{position:absolute;bottom:0;left:-10%;width:120%;height:64px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(246,178,90,.12),transparent 70%);animation:drift 9s ease-in-out infinite alternate}
+.river i:nth-child(2){bottom:16px;animation-duration:12s;animation-delay:-3s;opacity:.6}
+@keyframes drift{from{transform:translateX(-3%)}to{transform:translateX(3%)}}
+.diya{position:absolute;width:14px;height:8px;z-index:3;border-radius:0 0 14px 14px;background:linear-gradient(#c9702f,#7a3a1c);animation:float var(--t,26s) linear infinite;animation-delay:var(--d,0s)}
+.diya::before{content:"";position:absolute;left:50%;top:-11px;width:6px;height:11px;margin-left:-3px;border-radius:50%/65% 65% 35% 35%;background:radial-gradient(circle at 50% 70%,#fff3c4,#ffb347 60%,transparent 72%);box-shadow:0 0 14px 6px rgba(255,170,70,.55);animation:flick 1.3s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1)}to{transform:scale(1.15,.9)}}
+@keyframes float{from{transform:translateX(-4vw)}to{transform:translateX(104vw)}}
 
-  .ghat-line{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    height:120px;
-    background:var(--ink-2);
-    clip-path:polygon(0% 100%,0% 40%,6% 55%,14% 30%,22% 58%,30% 20%,38% 52%,46% 35%,54% 60%,62% 25%,70% 50%,78% 15%,86% 48%,94% 30%,100% 55%,100% 100%);
-    opacity:.9;
-  }
+/* ---------- shell ---------- */
+.app{position:fixed;inset:0;z-index:1;display:flex}
+.side{flex:0 0 252px;width:252px;height:100%;display:flex;flex-direction:column;padding:20px 14px 16px;gap:8px;position:relative;z-index:5;
+  background:linear-gradient(180deg,rgba(30,20,42,.72),rgba(30,20,42,.55));backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
+  border-right:1px solid rgba(247,234,217,.09);transition:flex-basis .35s ease,width .35s ease,transform .35s ease}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 18px;min-height:62px}
+.mark{flex:0 0 40px;height:40px;border-radius:13px;display:grid;place-items:center;font-family:var(--font-display);font-size:22px;color:var(--ink);background:linear-gradient(135deg,var(--gold),var(--marigold));box-shadow:0 6px 18px rgba(232,134,63,.35)}
+.bname{font-family:var(--font-display);font-size:18px;line-height:1.25;white-space:nowrap;flex:1}
+.bname small{display:block;font-family:var(--font-sign);font-style:italic;font-size:13.5px;color:var(--gold)}
+.collapse{background:none;border:none;width:28px;height:28px;border-radius:8px;cursor:pointer;color:#bca;display:grid;place-items:center;transition:background .2s}
+.collapse:hover{background:rgba(247,234,217,.08)}
+.collapse svg{transition:transform .3s}
+.nav{display:flex;flex-direction:column;gap:6px}
+.nav-i{position:relative;display:flex;align-items:center;gap:14px;height:48px;padding:0 14px;border:none;background:none;border-radius:14px;cursor:pointer;color:#cdbdac;font-size:15.5px;text-align:left;white-space:nowrap;transition:background .25s,color .25s}
+.nav-i svg{flex:0 0 22px;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-i:hover{background:rgba(247,234,217,.07);color:var(--cream)}
+.nav-i[aria-current=page]{color:var(--gold);background:linear-gradient(90deg,rgba(246,178,90,.2),rgba(246,178,90,.03))}
+.nav-i[aria-current=page]::before{content:"";position:absolute;left:-14px;top:11px;bottom:11px;width:4px;border-radius:0 4px 4px 0;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.side-foot{margin-top:auto}
+.cont{width:100%;display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;cursor:pointer;text-align:left;background:rgba(247,234,217,.06);border:1px solid rgba(247,234,217,.1);transition:background .25s,border-color .25s}
+.cont:hover{background:rgba(246,178,90,.1);border-color:rgba(246,178,90,.4)}
+.cont-cover{flex:0 0 38px;aspect-ratio:2/3;border-radius:2px 5px 5px 2px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,.45)}
+.cont-cover .cover-fallback{padding:12% 6%}.cont-cover .cf-title{font-size:7.5px;line-height:1.25}.cont-cover .cf-author,.cont-cover .cover-fallback::before{display:none}
+.cont-t{min-width:0;flex:1;font-size:13px;color:#cbb9a6}
+.cont-t b{display:block;font-family:var(--font-display);font-weight:400;font-size:14.5px;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
 
-  .eyebrow{
-    font-family:var(--font-sign);
-    font-style:italic;
-    letter-spacing:.06em;
-    color:var(--gold);
-    font-size:18px;
-    margin-bottom:14px;
-  }
-  .hero h1{
-    font-family:var(--font-display);
-    font-weight:500;
-    font-size:clamp(30px,5vw,52px);
-    color:var(--cream);
-    max-width:16ch;
-    line-height:1.3;
-  }
-  .poem{
-    margin-top:32px;
-    font-family:var(--font-display);
-    font-style:italic;
-    font-size:clamp(16px,2.2vw,20px);
-    line-height:2;
-    color:#e7d4c2;
-    max-width:520px;
-  }
-  .poem p{ margin-bottom:4px; }
+.app.collapsed .side{flex-basis:84px;width:84px}
+.app.collapsed .bname,.app.collapsed .nav-i span,.app.collapsed .cont-t{display:none}
+.app.collapsed .brand{flex-direction:column;padding-bottom:10px}
+.app.collapsed .nav-i{justify-content:center;padding:0}
+.app.collapsed .collapse svg{transform:rotate(180deg)}
+.app.collapsed .cont{justify-content:center;padding:8px}
 
-  /* ---------- CHARACTER ---------- */
-  .character{
-    margin-top:46px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    animation:bob 4s ease-in-out infinite;
-  }
-  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+.main{position:relative;flex:1;min-width:0;height:100%}
+.mbar{display:none}
+.view{position:absolute;inset:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease,visibility 0s .45s;padding-bottom:clamp(30px,9vh,90px)}
+.view::-webkit-scrollbar{display:none}
+.view.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease,transform .5s ease}
 
-  .char-arm-wave{ transform-origin:86px 118px; animation:wave 2.6s ease-in-out infinite; }
-  @keyframes wave{
-    0%,100%{ transform:rotate(0deg); }
-    20%{ transform:rotate(-18deg); }
-    40%{ transform:rotate(8deg); }
-    60%{ transform:rotate(-14deg); }
-    80%{ transform:rotate(4deg); }
-  }
-  .char-arm-point{ transform-origin:70px 150px; animation:pointBob 1.6s ease-in-out infinite; }
-  @keyframes pointBob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(5px);} }
+.eyebrow{font-family:var(--font-sign);font-style:italic;letter-spacing:.05em;color:var(--gold);font-size:19px;margin-bottom:12px}
 
-  .character-name{
-    margin-top:10px;
-    font-family:var(--font-sign);
-    font-style:italic;
-    font-weight:600;
-    font-size:18px;
-    color:var(--gold);
-    letter-spacing:.03em;
-  }
-  .character-name::before,.character-name::after{ content:"— "; }
-  .character-name::after{ content:" —"; }
+/* home */
+.home{min-height:100%;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;align-content:center;align-content:safe center;gap:3vw;padding:0 clamp(28px,6vw,110px)}
+.home h1{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,4.6vw,68px);line-height:1.25;max-width:13ch;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.poem{margin-top:24px;font-family:var(--font-display);font-style:italic;font-size:clamp(15px,1.5vw,19px);line-height:2;color:#e7d4c2;max-width:540px}
+.poem p{opacity:0}
+.view.on .poem p{animation:lineIn 1s ease forwards}
+.view.on .poem p:nth-child(1){animation-delay:.4s}.view.on .poem p:nth-child(2){animation-delay:1.1s}.view.on .poem p:nth-child(3){animation-delay:1.8s}.view.on .poem p:nth-child(4){animation-delay:2.5s}
+@keyframes lineIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.art{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.art::before{content:"";position:absolute;width:min(34vw,380px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(246,178,90,.22),rgba(246,178,90,.05) 55%,transparent 70%);filter:blur(4px)}
+.art svg{position:relative;width:clamp(150px,19vw,290px);height:auto;animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.char-arm-wave{transform-origin:108px 118px;animation:wave 2.6s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-11deg)}80%{transform:rotate(3deg)}}
+.char-arm-point{transform-origin:62px 118px;animation:pointBob 1.6s ease-in-out infinite}
+@keyframes pointBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.cname{position:relative;margin-top:10px;font-family:var(--font-sign);font-style:italic;font-weight:600;font-size:19px;color:var(--gold)}
+.cname::before{content:"— "}.cname::after{content:" —"}
 
-  .scroll-hint{
-    margin-top:26px;
-    background:none;
-    border:1px solid rgba(247,234,217,.35);
-    color:var(--cream);
-    font-family:var(--font-body);
-    font-size:14px;
-    letter-spacing:.04em;
-    padding:10px 20px;
-    border-radius:999px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    cursor:pointer;
-    transition:border-color .25s, background .25s;
-  }
-  .scroll-hint:hover{ border-color:var(--gold); background:rgba(246,178,90,.08); }
-  .scroll-hint svg{ animation:chevBounce 1.6s ease-in-out infinite; }
-  @keyframes chevBounce{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(5px);} }
+/* library: all books */
+.libv{min-height:100%;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:clamp(18px,3.2vh,34px);padding:0 clamp(28px,5vw,90px);
+  --cw:max(150px,min(240px,calc((100vh - 400px)*.667)))}
+.lib-head h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3.2vw,46px);line-height:1.2}
+.lib-head p{margin-top:6px;color:#bfae9c;font-size:14px}
+.books{display:flex;align-items:flex-start;gap:clamp(24px,3.6vw,60px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x proximity;padding:6px 6px 18px;margin:0 -6px}
+.books::-webkit-scrollbar{display:none}
+.bk{flex:0 0 var(--cw);width:var(--cw);display:flex;flex-direction:column;align-items:flex-start;scroll-snap-align:start}
+.bk-cover{width:100%;aspect-ratio:2/3;position:relative;border-radius:3px 9px 9px 3px;overflow:hidden;background:#2c2038;margin-bottom:16px;transform-origin:left center;transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s;
+  box-shadow:0 22px 40px rgba(0,0,0,.5),inset 4px 0 7px rgba(0,0,0,.28)}
+.bk-cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.38) 0,rgba(255,255,255,.13) 3%,rgba(0,0,0,.07) 6%,transparent 14%)}
+.bk:not(.soon) .bk-cover{cursor:pointer}
+.bk:not(.soon):hover .bk-cover,.bk-cover:focus-visible{transform:perspective(900px) rotateY(-12deg) translateY(-6px);box-shadow:20px 28px 44px rgba(0,0,0,.55),inset 4px 0 7px rgba(0,0,0,.28)}
+.bk.soon .bk-cover{filter:saturate(.45) brightness(.72)}
+.chip{display:inline-block;margin-bottom:9px;font-size:12px;letter-spacing:.03em;padding:4px 12px;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:600}
+.chip.muted{background:rgba(247,234,217,.14);color:var(--cream)}
+.bk h3{font-family:var(--font-display);font-weight:400;font-size:clamp(18px,1.6vw,22px);line-height:1.35}
+.by{font-family:var(--font-sign);font-style:italic;color:var(--gold);font-size:16px;margin-top:2px}
+.bk-blurb{margin:8px 0 12px;color:#d3c2af;font-size:13.5px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pbar{display:block;height:4px;border-radius:4px;background:rgba(247,234,217,.15);overflow:hidden;width:100%;margin-top:7px}
+.pbar i{display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,var(--gold),var(--marigold))}
+.bk .pbar{margin:0 0 12px}
+.bk .btn{width:100%;padding:12px 10px;font-size:14.5px;margin-top:auto}
+.bk .btn:disabled{background:rgba(247,234,217,.1);color:#b9a995;cursor:not-allowed;box-shadow:none;transform:none}
+.cover-fallback{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:12% 10% 10%;background:linear-gradient(160deg,var(--acc,#a6534a),#2a1a30);color:var(--cream)}
+.cover-fallback::before{content:"";width:46px;height:2px;background:var(--gold);opacity:.8}
+.cf-title{font-family:var(--font-display);font-size:clamp(20px,2vw,28px);line-height:1.35}
+.cf-author{font-family:var(--font-sign);font-style:italic;color:var(--gold);font-size:16px}
 
-  /* ---------- SELECT ---------- */
-  .select{
-    min-height:100vh;
-    padding:120px 24px;
-    background:var(--ink);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-  }
-  .select h2{
-    font-family:var(--font-display);
-    font-weight:500;
-    font-size:clamp(26px,4vw,38px);
-    color:var(--cream);
-    margin-top:10px;
-  }
-  .cards{
-    margin-top:56px;
-    display:grid;
-    grid-template-columns:repeat(3,minmax(220px,280px));
-    gap:28px;
-    justify-content:center;
-  }
-  @media (max-width:820px){ .cards{ grid-template-columns:minmax(220px,320px); } }
+/* author */
+.author{min-height:100%;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;align-content:center;align-content:safe center;gap:clamp(30px,6vw,96px);padding:0 clamp(28px,6vw,110px)}
+.aph{position:relative;width:clamp(190px,21vw,300px);aspect-ratio:3/4;border-radius:999px 999px 26px 26px;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(160deg,#5a3556,#241a30);border:3px solid rgba(246,178,90,.65);box-shadow:0 0 0 10px rgba(246,178,90,.08),0 34px 60px rgba(0,0,0,.55)}
+.aph img{width:100%;height:100%;object-fit:cover;display:block}
+.aph svg{width:72%;height:auto}
+.author h2{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.6vw,54px);line-height:1.2}
+.role{font-family:var(--font-sign);font-style:italic;font-size:19px;color:var(--gold);margin-top:6px}
+.intro{margin-top:20px;max-width:56ch}
+.intro p{color:#e6d7c5;font-size:clamp(14.5px,1.25vw,17px);line-height:1.95;margin-bottom:12px}
+.q{margin:20px 0 0;padding-left:18px;border-left:2px solid var(--gold);font-family:var(--font-display);font-style:italic;font-size:clamp(16px,1.5vw,21px);line-height:1.65;color:#f0e0cd;max-width:34ch}
+.sign{margin-top:18px;font-family:var(--font-sign);font-style:italic;font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.7;color:var(--gold)}
+.stat{margin-top:12px;color:#a99a89;font-size:13px}
 
-  .card{
-    background:linear-gradient(160deg, #2c2038, #241a30);
-    border:1px solid rgba(247,234,217,.12);
-    border-radius:14px;
-    padding:20px 14px 16px;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    text-align:left;
-    position:relative;
-    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-  }
-  .card.active{ cursor:pointer; }
-  .card.active:hover{
-    transform:translateY(-8px);
-    border-color:var(--gold);
-    box-shadow:0 18px 40px rgba(0,0,0,.35);
-  }
-  .card.disabled{ opacity:.45; }
-  .card-cover{
-    width:100%;
-    border-radius:8px;
-    margin-bottom:18px;
-    box-shadow:0 12px 28px rgba(0,0,0,.4);
-    display:block;
-  }
-  .card-badge{
-    font-size:12px;
-    letter-spacing:.05em;
-    padding:5px 12px;
-    border-radius:999px;
-    background:var(--gold);
-    color:var(--ink);
-    font-weight:600;
-    margin-bottom:16px;
-  }
-  .card-badge.muted{ background:rgba(247,234,217,.14); color:var(--cream); }
-  .card h3{
-    font-family:var(--font-display);
-    font-weight:500;
-    font-size:22px;
-    color:var(--cream);
-    margin-bottom:8px;
-    line-height:1.35;
-  }
-  .card p{ font-size:14px; color:#c9b8a6; line-height:1.6; margin-bottom:20px; }
-  .read-btn{
-    margin-top:auto;
-    background:none;
-    border:none;
-    color:var(--gold);
-    font-family:var(--font-body);
-    font-weight:600;
-    font-size:15px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
+/* settings */
+.set{min-height:100%;display:grid;align-content:center;align-content:safe center;justify-items:center;padding:0 22px}
+.set-card{width:min(520px,100%);padding:26px;border-radius:24px;background:rgba(30,20,42,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(247,234,217,.12);box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.set-card h2{font-family:var(--font-display);font-weight:400;font-size:26px;margin-bottom:16px}
+.preview{--page-bg:#f8efe0;--page-ink:#2b2018;--page-accent:#a6534a;--page-muted:#8a7762;--page-line:#e0cfae;border-radius:10px;padding:18px 20px;margin-bottom:8px;background:var(--page-bg);color:var(--page-ink);font-family:var(--font-book);line-height:1.9;font-size:16px;box-shadow:inset 6px 0 10px -4px rgba(70,40,10,.28),0 12px 24px rgba(0,0,0,.35);transition:background .3s,color .3s}
+.preview p{margin:0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(247,234,217,.08);font-size:15px;color:#e1d2c0}
+.srow:last-child{border-bottom:none;padding-bottom:0}
+.ctl{display:flex;align-items:center;gap:10px}.ctl b{min-width:44px;text-align:center;font-weight:500;color:var(--gold)}
+.dots{display:flex;gap:12px}
 
-  /* ---------- BOOK OVERLAY ---------- */
-  .book-overlay{
-    position:fixed; inset:0;
-    background:rgba(15,10,20,.96);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:50;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .45s ease;
-    padding:16px;
-  }
-  .book-overlay.visible{ opacity:1; pointer-events:auto; }
+@media(max-width:1060px) and (min-width:821px){.side{flex-basis:84px;width:84px}.bname,.nav-i span,.cont-t{display:none}.brand{flex-direction:column;padding-bottom:10px}.nav-i{justify-content:center;padding:0}.cont{justify-content:center;padding:8px}.collapse{display:none}}
 
-  .close-btn{
-    position:absolute;
-    top:16px; right:16px;
-    background:none;
-    border:1px solid rgba(247,234,217,.3);
-    color:var(--cream);
-    width:38px; height:38px;
-    border-radius:50%;
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:border-color .2s, transform .2s;
-    z-index:2;
-  }
-  .close-btn:hover{ border-color:var(--gold); transform:rotate(90deg); }
+/* mobile: drawer + compact single-screen views */
+@media(max-width:820px){
+  .side{position:fixed;left:0;top:0;bottom:0;width:min(82vw,300px);flex-basis:auto;transform:translateX(-102%);background:rgba(26,17,36,.94);box-shadow:20px 0 60px rgba(0,0,0,.5);padding-top:calc(20px + env(safe-area-inset-top))}
+  .app.drawer .side{transform:none}
+  .app.collapsed .side{width:min(82vw,300px)}
+  .app.collapsed .bname,.app.collapsed .nav-i span,.app.collapsed .cont-t{display:revert}
+  .app.collapsed .nav-i{justify-content:flex-start;padding:0 14px}
+  .app.collapsed .brand{flex-direction:row}
+  .collapse{display:none}
+  .scrim{position:fixed;inset:0;z-index:4;background:rgba(8,5,12,.6);opacity:0;pointer-events:none;transition:opacity .3s}
+  .app.drawer .scrim{opacity:1;pointer-events:auto}
+  .mbar{display:flex;align-items:center;gap:12px;position:absolute;top:0;left:0;right:0;height:calc(56px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 14px 0;z-index:3}
+  .mbtn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(247,234,217,.07);border:1px solid rgba(247,234,217,.14);cursor:pointer}
+  .mbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .mtitle{font-family:var(--font-display);font-size:18px;color:var(--gold)}
+  .view{top:calc(56px + env(safe-area-inset-top));padding-bottom:calc(8vh + env(safe-area-inset-bottom))}
+  .moon{top:calc(70px + env(safe-area-inset-top));right:6%}
 
-  .cover-stage{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:26px;
-    width:100%;
-    max-width:340px;
-  }
-  .cover-img{
-    width:min(78vw,300px);
-    max-width:100%;
-    border-radius:6px;
-    box-shadow:0 30px 70px rgba(0,0,0,.55);
-    opacity:0;
-    transform:scale(.82) rotateY(25deg);
-  }
-  .cover-img.show{
-    animation:coverIn .9s cubic-bezier(.2,.7,.3,1) forwards;
-  }
-  @keyframes coverIn{
-    to{ opacity:1; transform:scale(1) rotateY(0deg); }
-  }
-  .open-btn{
-    background:var(--gold);
-    color:var(--ink);
-    border:none;
-    font-family:var(--font-body);
-    font-weight:600;
-    font-size:15px;
-    padding:12px 30px;
-    border-radius:999px;
-    cursor:pointer;
-    opacity:0;
-    transition:transform .2s, opacity .6s ease .5s;
-  }
-  .open-btn.show{ opacity:1; }
-  .open-btn:hover{ transform:translateY(-2px); }
+  .home{grid-template-columns:1fr;grid-template-rows:auto auto;text-align:center;gap:6px;padding:0 22px;justify-items:center}
+  .art{order:-1}.art svg{width:clamp(100px,22vh,160px)}.art::before{width:60vw}
+  .cname{font-size:16px;margin-top:4px}
+  .eyebrow{font-size:16px;margin-bottom:6px}
+  .home h1{max-width:none;font-size:clamp(26px,8vw,36px)}
+  .poem{margin-top:12px;font-size:14px;line-height:1.85}
+  .cta{justify-content:center;margin-top:18px}
 
-  /* ---------- READER ---------- */
-  .reader-stage{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:16px;
-    width:100%;
-    height:100%;
-    max-width:520px;
-    max-height:100%;
-  }
-  .book{
-    perspective:1800px;
-    width:min(94vw,480px);
-    height:min(70vh,660px);
-    flex:1 1 auto;
-    min-height:0;
-  }
-  .page{
-    width:100%; height:100%;
-    background:var(--paper);
-    border-radius:4px;
-    box-shadow:0 25px 60px rgba(0,0,0,.5), inset -3px 0 8px rgba(0,0,0,.06);
-    padding:46px 40px;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-    color:var(--text-ink);
-    font-family:var(--font-body);
-    font-size:15.5px;
-    line-height:1.85;
-    transform-origin:left center;
-    transition:transform .38s ease, opacity .38s ease;
-    position:relative;
-  }
-  .page::-webkit-scrollbar{ width:6px; }
-  .page::-webkit-scrollbar-thumb{ background:var(--paper-edge); border-radius:6px; }
 
-  .page.leave-next{ transform:rotateY(-18deg) translateX(-14px); opacity:0; }
-  .page.leave-prev{ transform:rotateY(18deg) translateX(14px); opacity:0; }
-  .page.enter-next{ transform:rotateY(18deg) translateX(14px); opacity:0; }
-  .page.enter-prev{ transform:rotateY(-18deg) translateX(-14px); opacity:0; }
-  .page.settle{ transform:rotateY(0) translateX(0); opacity:1; }
+  .libv{gap:14px;padding:0 20px;--cw:max(130px,min(58vw,calc((100dvh - 430px)*.667)))}
+  .lib-head h2{font-size:26px}
+  .books{margin:0 -20px;padding:6px 20px 14px;gap:16px;scroll-snap-type:x mandatory;scroll-padding:0 20px}
+  .author{grid-template-columns:1fr;text-align:center;gap:16px;padding:0 22px;justify-items:center}
+  .aph{width:clamp(110px,19vh,160px)}
+  .author h2{font-size:28px}.role{font-size:16px}
+  .intro{margin-top:12px}.intro p{font-size:14px;line-height:1.8}
+  .q{border-left:none;padding-left:0;margin:12px auto 0;font-size:16px}
+}
+@media(max-height:640px) and (max-width:820px){.art svg{width:90px}.poem p:nth-child(n+3){display:none}.bk-blurb{display:none}.q{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}.poem p{opacity:1}}
 
-  .page h4{
-    font-family:var(--font-display);
-    font-weight:500;
-    font-size:20px;
-    color:var(--ember);
-    margin-bottom:16px;
-  }
-  .page p{ margin-bottom:14px; text-align:justify; }
-  .page p.dialogue{
-    padding-left:16px;
-    border-left:2px solid var(--paper-edge);
-    font-style:italic;
-    color:#4a382a;
-  }
-  .page p.doha{
-    text-align:center;
-    font-family:var(--font-display);
-    font-size:17px;
-    color:var(--ember);
-    margin:24px 0;
-  }
-  .page .quote-block{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-  }
-  .quote-block p{
-    font-family:var(--font-display);
-    font-style:italic;
-    font-size:20px;
-    line-height:1.8;
-    max-width:34ch;
-  }
-  .quote-block span{
-    margin-top:22px;
-    font-family:var(--font-sign);
-    font-style:italic;
-    font-weight:600;
-    font-size:16px;
-    color:var(--ember);
-  }
-  .closing-block{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    gap:10px;
-  }
-  .closing-block p{ font-size:16px; }
-  .closing-block .sign{
-    margin-top:18px;
-    font-family:var(--font-sign);
-    font-style:italic;
-    font-weight:600;
-    font-size:19px;
-    color:var(--ember);
-  }
-  .closing-block .thanks{
-    margin-top:30px;
-    font-family:var(--font-display);
-    font-size:15px;
-    color:var(--text-muted);
-    letter-spacing:.04em;
-  }
-  .page-num{
-    position:absolute;
-    bottom:14px; left:0; right:0;
-    text-align:center;
-    font-size:12px;
-    color:var(--text-muted);
-    letter-spacing:.05em;
-  }
+/* ================= OVERLAY ================= */
+.overlay{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .45s ease;
+  background:radial-gradient(ellipse at 50% 40%,#3a2a48 0%,#1b1326 55%,#0e0914 100%);
+  --page-bg:#f8efe0;--page-ink:#2b2018;--page-accent:#a6534a;--page-muted:#8a7762;--page-line:#e0cfae;--edge-a:#e6d6b6;--edge-b:#c4ae82;--shadow-g:rgba(70,40,10,.24)}
+.overlay.visible{opacity:1;pointer-events:auto}
+.overlay[data-theme="sepia"],.preview[data-theme="sepia"]{--page-bg:#ecd9b0;--page-ink:#3b2a14;--page-accent:#8a4a2a;--page-muted:#7d6642;--page-line:#cdb582;--edge-a:#d8c391;--edge-b:#b09866}
+.overlay[data-theme="night"],.preview[data-theme="night"]{--page-bg:#2a2231;--page-ink:#e8dccb;--page-accent:#f0a65c;--page-muted:#9b8d82;--page-line:#43364d;--edge-a:#3a3042;--edge-b:#1e1826;--shadow-g:rgba(0,0,0,.5)}
+.x{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(247,234,217,.06);border:1px solid rgba(247,234,217,.3);color:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,transform .3s}
+.x:hover{border-color:var(--gold);transform:rotate(90deg)}
 
-  .reader-controls{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    flex-shrink:0;
-  }
-  .reader-controls button{
-    background:none;
-    border:1px solid rgba(247,234,217,.3);
-    color:var(--cream);
-    font-family:var(--font-body);
-    font-size:14px;
-    padding:9px 18px;
-    border-radius:999px;
-    cursor:pointer;
-    transition:border-color .2s, opacity .2s;
-  }
-  .reader-controls button:hover:not(:disabled){ border-color:var(--gold); }
-  .reader-controls button:disabled{ opacity:.3; cursor:not-allowed; }
-  #pageCounter{ font-size:13px; color:#c9b8a6; letter-spacing:.04em; }
+/* cover stage */
+.cover-stage{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;padding:20px;perspective:1600px}
+.cover-book{width:min(70vw,290px);aspect-ratio:2/3;position:relative;transform-origin:left center;transform-style:preserve-3d;border-radius:3px 8px 8px 3px;
+  box-shadow:0 40px 80px rgba(0,0,0,.6),inset 5px 0 8px rgba(0,0,0,.3);opacity:0;transform:scale(.85) rotateY(24deg);overflow:hidden;background:#2c2038}
+.cover-book.show{animation:coverIn .9s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes coverIn{to{opacity:1;transform:scale(1) rotateY(0)}}
+.cover-book::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.4) 0,rgba(255,255,255,.14) 3%,rgba(0,0,0,.08) 6%,transparent 14%)}
+.cover-book img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-book.opening{transition:transform .7s cubic-bezier(.5,.05,.3,1),opacity .7s;transform:rotateY(-105deg) scale(.95);opacity:0;animation:none}
+.cover-title{font-family:var(--font-display);font-size:20px;color:var(--cream);text-align:center;opacity:0;transition:opacity .6s ease .4s}
+.cover-actions{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transition:opacity .6s ease .5s}
+.cover-title.show,.cover-actions.show{opacity:1}
+.btn{background:var(--gold);color:var(--ink);border:none;font-weight:600;font-size:15px;padding:13px 32px;border-radius:999px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(246,178,90,.25)}
+.btn.ghost{background:none;color:var(--cream);border:1px solid rgba(247,234,217,.3);font-size:13.5px;padding:9px 20px}
+.btn.ghost:hover{border-color:var(--gold);box-shadow:none}
 
-  /* ---------- RESPONSIVE: BOOK OVERLAY / READER ---------- */
-  @media (max-width:600px){
-    .book-overlay{ padding:12px; }
-    .close-btn{ top:10px; right:10px; width:34px; height:34px; }
+/* reader */
+.reader{display:flex;flex-direction:column;width:100%;height:100%;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);animation:readerIn .6s ease both}
+@keyframes readerIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.topbar{flex:0 0 52px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;position:relative;gap:8px}
+.tbtn{background:none;border:1px solid rgba(247,234,217,.25);color:var(--cream);font-size:13.5px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:border-color .2s,background .2s;white-space:nowrap}
+.tbtn:hover{border-color:var(--gold);background:rgba(246,178,90,.08)}
+.tt{font-family:var(--font-sign);font-style:italic;color:var(--gold);font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pop{position:absolute;top:50px;right:12px;z-index:10;width:230px;padding:14px;border-radius:14px;background:rgba(32,22,42,.97);border:1px solid rgba(247,234,217,.18);box-shadow:0 20px 50px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:14px}
+.pop .row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;color:#cdbdac}
+.pop .row button{background:none;border:1px solid rgba(247,234,217,.28);color:var(--cream);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px}
+.pop .row button:hover{border-color:var(--gold)}
+.pop .dots{display:flex;gap:10px}
+.dot{width:28px;height:28px;border-radius:50%!important;padding:0!important;border:2px solid rgba(247,234,217,.3)!important}
+.dot[data-t="paper"]{background:#f8efe0}.dot[data-t="sepia"]{background:#ecd9b0}.dot[data-t="night"]{background:#2a2231}
+.dot.on{border-color:var(--gold)!important}
 
-    .cover-stage{ gap:18px; max-width:88vw; }
-    .cover-img{ width:min(70vw,240px); }
-    .open-btn{ padding:11px 26px; font-size:14px; }
+.stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;width:100%;padding:6px}
+.book{position:relative;display:flex;width:calc(var(--pw)*var(--cols));height:var(--ph);perspective:2600px;isolation:isolate;touch-action:pan-y;cursor:pointer;user-select:none;-webkit-user-select:none}
+.book::before{content:"";position:absolute;inset:-9px -11px -12px;z-index:-1;border-radius:6px 10px 10px 6px;
+  background:linear-gradient(135deg,#6a3d5c,#3a2038 70%);box-shadow:0 40px 70px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.07)}
+.book.one::before{inset:-6px -7px -9px -5px}
+.book.two::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;z-index:4;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.05),rgba(0,0,0,.28))}
 
-    .reader-stage{ gap:12px; max-width:100%; height:100%; }
-    .book{
-      width:100%;
-      height:calc(100% - 54px);
-      perspective:none;
-    }
-    .page{
-      padding:26px 20px 40px;
-      font-size:14.5px;
-      line-height:1.75;
-      border-radius:8px;
-      box-shadow:0 14px 34px rgba(0,0,0,.5);
-    }
-    .page h4{ font-size:18px; margin-bottom:12px; }
-    .page p{ margin-bottom:12px; }
-    .quote-block p{ font-size:17px; max-width:28ch; }
-    .closing-block p{ font-size:14.5px; }
+.page{position:relative;flex:0 0 auto;width:var(--pw);height:var(--ph);overflow:hidden;background:var(--page-bg);color:var(--page-ink);font-family:var(--font-book);font-size:var(--fs);line-height:1.95}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .18 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.overlay[data-theme="night"] .page::before{mix-blend-mode:screen;opacity:.12}
+.page::after{content:"";position:absolute;top:0;bottom:0;width:16%;pointer-events:none}
+.page.left::after{right:0;background:linear-gradient(to left,var(--shadow-g),transparent)}
+.page.right::after,.page.single::after{left:0;background:linear-gradient(to right,var(--shadow-g),transparent)}
+.page.single::after{width:7%}
+.page.left{border-radius:3px 0 0 3px;box-shadow:-1px 0 0 var(--edge-a),-2px 0 0 var(--edge-b),-3px 0 0 var(--edge-a),-4px 0 0 var(--edge-b)}
+.page.right,.page.single{border-radius:0 3px 3px 0;box-shadow:1px 0 0 var(--edge-a),2px 0 0 var(--edge-b),3px 0 0 var(--edge-a),4px 0 0 var(--edge-b)}
+.page.blank{background:var(--page-bg)}
+.page-inner{position:absolute;left:var(--px);right:var(--px);top:var(--pt);bottom:var(--pb);overflow:hidden}
+.runhead{position:absolute;top:calc(var(--pt) - 34px);left:var(--px);right:var(--px);text-align:center;font-family:var(--font-sign);font-style:italic;font-size:calc(var(--fs)*.82);color:var(--page-muted);letter-spacing:.04em}
+.foot{position:absolute;bottom:calc(var(--pb) - 40px);left:0;right:0;text-align:center;font-family:var(--font-sign);font-size:calc(var(--fs)*.9);color:var(--page-muted)}
+.foot::before,.foot::after{content:"";display:inline-block;width:14px;height:1px;background:var(--page-line);vertical-align:middle;margin:0 9px}
+.page.nofoot .foot,.page.nofoot .runhead,.page.blank .foot,.page.blank .runhead{display:none}
 
-    .page.leave-next,.page.leave-prev,.page.enter-next,.page.enter-prev{
-      transform:translateX(0); opacity:0;
-    }
+/* typography inside the book */
+.page-inner h4{font-family:var(--font-display);font-weight:500;font-size:1.28em;line-height:1.5;color:var(--page-accent);margin-bottom:.9em}
+.page-inner h4::after{content:"";display:block;width:38px;height:1px;background:var(--page-accent);opacity:.7;margin-top:.5em}
+.page-inner p{margin-bottom:.62em;text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:anywhere}
+.page-inner p.dialogue{padding-left:.9em;border-left:2px solid var(--page-line);font-style:italic;opacity:.94}
+.page-inner p.doha{text-align:center;font-family:var(--font-display);font-size:1.08em;color:var(--page-accent);margin:1.4em 0}
+.page-inner em{font-style:italic}
+.quote-block,.closing-block{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.quote-block p{font-style:italic;font-size:1.25em;line-height:1.8;max-width:30ch;text-align:center;font-family:var(--font-display)}
+.quote-block p::before{content:"“";display:block;font-size:2.4em;line-height:.6;color:var(--page-accent);opacity:.5;margin-bottom:.1em}
+.quote-block span{margin-top:1.3em;font-family:var(--font-sign);font-style:italic;font-weight:600;font-size:1em;color:var(--page-accent)}
+.closing-block{gap:8px}.closing-block p{text-align:center}
+.closing-block::before{content:"❖";color:var(--page-accent);opacity:.7;margin-bottom:1em;font-size:1.2em}
+.closing-block .sign{margin-top:1.1em;font-family:var(--font-sign);font-style:italic;font-weight:600;font-size:1.15em;color:var(--page-accent);line-height:1.6}
+.closing-block .thanks{margin-top:1.8em;font-size:.9em;color:var(--page-muted)}
 
-    .reader-controls{ gap:10px; width:100%; justify-content:space-between; }
-    .reader-controls button{ padding:10px 16px; font-size:13.5px; flex:0 0 auto; }
-    #pageCounter{ font-size:12.5px; }
-  }
+.measurer{position:absolute!important;left:-9999px;top:0;visibility:hidden;pointer-events:none}
 
-  @media (max-width:380px){
-    .page{ padding:22px 16px 36px; font-size:13.8px; }
-    .cover-img{ width:min(68vw,200px); }
-  }
+/* flipping leaf */
+.leaf{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;z-index:6;transition:transform var(--flip) cubic-bezier(.5,.05,.2,1)}
+.leaf.next{left:var(--pw);transform-origin:left center}.leaf.prev{left:0;transform-origin:right center}
+.leaf.next.go{transform:rotateY(-180deg)}.leaf.prev.go{transform:rotateY(180deg)}
+.leaf .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.leaf .back{transform:rotateY(180deg)}
+.leaf .shade{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.5))}
+.leaf.go .shade{animation:shade var(--flip) ease-in-out}
+@keyframes shade{0%,100%{opacity:0}50%{opacity:.85}}
+.leaf.one{left:0;transform-origin:left center;transition:transform .6s cubic-bezier(.5,.05,.25,1),opacity .6s ease}
+.leaf.one.go,.leaf.one.in{transform:rotateY(-105deg);opacity:0}
+.leaf.one.in.go{transform:none;opacity:1}
+.leaf.one .shade{display:none}
 
-  @media (max-height:640px) and (max-width:600px){
-    .book{ height:calc(100% - 48px); }
-    .page{ padding:18px 16px 34px; }
-  }
+.bottombar{flex:0 0 auto;width:100%;max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:8px 14px 14px}
+.bottombar .tbtn{flex:0 0 auto}
+.bottombar .tbtn:disabled{opacity:.28;cursor:not-allowed}
+.scrub-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+#pageCounter{font-size:12.5px;color:#cbb9a6;letter-spacing:.04em}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:20px;background:none;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold) var(--p,0%),rgba(247,234,217,.18) var(--p,0%))}
+input[type=range]::-moz-range-track{height:3px;border-radius:3px;background:rgba(247,234,217,.18)}
+input[type=range]::-moz-range-progress{height:3px;background:var(--gold)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);margin-top:-6.5px;box-shadow:0 0 0 4px rgba(246,178,90,.18)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-radius:50%;background:var(--gold)}
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:.001s !important; transition-duration:.001s !important; }
-  }
+@media(max-width:600px){
+  .topbar{flex-basis:48px}
+  .tt{font-size:15px}
+  .tbtn{padding:8px 12px;font-size:13px}
+  .bottombar{gap:8px;padding:6px 10px 10px}
+  .pop{right:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
+  .poem p{opacity:1}
+}
 </style>
 </head>
 <body>
+<div class="world" aria-hidden="true">
+  <div class="stars" id="stars"></div><div class="moon"></div>
+  <div class="river"><i></i><i></i></div><div id="diyas"></div><div class="ghat"></div>
+</div>
 
-<section class="hero">
-  <div class="stars" id="stars"></div>
-  <p class="eyebrow">ऋषिकेश की कलम से</p>
-  <h1>ऋषिकेश की लेखनी में फिर स्वागत है</h1>
-  <div class="poem">
-    <p>स्याही सूखी नहीं अभी, कलम ने फिर पुकारा है,</p>
-    <p>गंगा की उस लहर में आज, कोई किस्सा फिर से जागा है।</p>
-    <p>बरसों की खामोशी तोड़कर, शब्द उतरे हैं घाट की सीढ़ी पर,</p>
-    <p>आइए, थोड़ी देर बैठिए यहाँ — एक कहानी बहती है, इस पार से उस पार।</p>
-  </div>
+<div class="app" id="app">
+  <aside class="side" id="side" aria-label="मुख्य नेविगेशन">
+    <div class="brand">
+      <span class="mark">ऋ</span>
+      <span class="bname">ऋषि की लेखनी<small>R. D. Tiwari</small></span>
+      <button class="collapse" id="collapse" aria-label="साइडबार छोटा/बड़ा करें"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    </div>
+    <nav class="nav">
+      <button class="nav-i" data-go="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>मुखपृष्ठ</span></button>
+      <button class="nav-i" data-go="library"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 21.5V4.5"/></svg><span>पुस्तकालय</span></button>
+      <button class="nav-i" data-go="author"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>लेखक</span></button>
+      <button class="nav-i" data-go="settings"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="8" cy="18" r="2" fill="currentColor"/></svg><span>पढ़ने की सेटिंग</span></button>
+    </nav>
+    <div class="side-foot">
+      <button class="cont" id="cont" aria-label="पढ़ना जारी रखें">
+        <span class="cont-cover" id="contCover"></span>
+        <span class="cont-t"><b id="contTitle"></b><span id="contSub"></span><span class="pbar" id="contBar"><i></i></span></span>
+      </button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
 
-  <div class="character">
-    <svg width="170" height="190" viewBox="0 0 170 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <main class="main">
+    <header class="mbar">
+      <button class="mbtn" id="menuBtn" aria-label="मेन्यू खोलें"><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg></button>
+      <span class="mtitle" id="mTitle"></span>
+    </header>
+
+    <section class="view" id="v-home">
+      <div class="home">
+        <div>
+          <p class="eyebrow">ऋषिकेश की कलम से</p>
+          <h1>ऋषिकेश की चाय लेखनी में फिर स्वागत है</h1>
+          <div class="poem">
+            <p>बनारस की शाम है, गंगा किनारे चाय का प्याला है,</p>
+            <p>एक चुस्की तुम्हारी, एक घूँट हमारा — और सामने गंगा की धारा है।</p>
+            <p>कुछ बातें हों, कुछ ख़ामोशियाँ, और घाट की सीढ़ियों पर ठहरता हुआ वक़्त,</p>
+            <p>आइए, थोड़ी देर बैठिए यहाँ — शायद इसी चाय में कोई कहानी फिर से हमारा इंतज़ार कर रही है।</p>
+          </div>
+          <div class="cta">
+            <button class="btn" id="homeRead">पढ़ना शुरू करें</button>
+            <button class="btn ghost" data-go="library">पुस्तकालय देखें</button>
+          </div>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 170 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <ellipse cx="85" cy="182" rx="46" ry="7" fill="#000" opacity=".18"/>
       <path d="M50 190 L58 118 C58 100 112 100 112 118 L120 190 Z" fill="#a6534a"/>
       <rect x="58" y="112" width="54" height="14" rx="4" fill="#8a4340"/>
@@ -517,87 +384,105 @@
       <rect x="88" y="76" width="16" height="8" rx="4" fill="none" stroke="#3b2a20" stroke-width="2.5"/>
       <line x1="82" y1="80" x2="88" y2="80" stroke="#3b2a20" stroke-width="2.5"/>
       <path d="M70 96 Q85 104 100 96" stroke="#5a3d2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <g class="char-arm-point">
-        <path d="M62 118 C50 130 46 150 52 168" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/>
-      </g>
-      <g class="char-arm-wave">
-        <path d="M108 118 C122 108 132 90 128 70" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/>
-        <circle cx="128" cy="68" r="8" fill="#e0a978"/>
-      </g>
+      <g class="char-arm-point"><path d="M62 118 C50 130 46 150 52 168" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/></g>
+      <g class="char-arm-wave"><path d="M108 118 C122 108 132 90 128 70" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="128" cy="68" r="8" fill="#e0a978"/></g>
     </svg>
-    <span class="character-name">R. D. Tiwari</span>
-  </div>
+          <span class="cname">R. D. Tiwari</span>
+        </div>
+      </div>
+    </section>
 
-  <button class="scroll-hint" id="scrollHint">
-    <span>नीचे स्क्रॉल करें</span>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-  </button>
-  <div class="ghat-line"></div>
-</section>
+    <section class="view" id="v-library">
+      <div class="libv">
+        <div class="lib-head"><h2>पुस्तकालय</h2><p id="libCount"></p></div>
+        <div class="books" id="books"></div>
+      </div>
+    </section>
 
-<section class="select" id="select">
-  <p class="eyebrow">आगे की यात्रा</p>
-  <h2>अपनी कहानी चुनिए</h2>
-  <div class="cards">
-    <article class="card active" id="storyCard">
-      <img src="front-page.png.png" class="card-cover" alt="आई लव यू मोर, पापा — पुस्तक का मुखपृष्ठ">
-      <div class="card-badge">पढ़ने के लिए तैयार</div>
-      <h3>I Love you more, पापा</h3>
-      <p>मणिकर्णिका घाट से एक अनकही प्रेम कहानी — पिता और पुत्र के बीच के उस रिश्ते की, जिसे शब्दों में बाँधना मुश्किल है।</p>
-      <button class="read-btn">पढ़ना शुरू करें →</button>
-    </article>
-    <article class="card disabled">
-      <div class="card-badge muted">जल्द आ रहा है</div>
-      <h3>काशी की गलियाँ</h3>
-      <p>बनारस की तंग गलियों में बसी कुछ और अनकही कहानियाँ।</p>
-    </article>
-    <article class="card disabled">
-      <div class="card-badge muted">जल्द आ रहा है</div>
-      <h3>वापसी</h3>
-      <p>एक और सफ़र, एक और रिश्ता, एक और घर लौटने की कहानी।</p>
-    </article>
-  </div>
-</section>
+    <section class="view" id="v-author">
+      <div class="author">
+       <div class="aph" id="aPhoto">
+  <img src="r1.jpeg" alt="Author Photo">
+</div>
+        <div>
+          <p class="eyebrow">कलम के पीछे</p>
+          <h2 id="aName"></h2>
+          <p class="role" id="aRole"></p>
+          <div class="intro" id="aIntro"></div>
+          <blockquote class="q">दो कप चाय, तुम, हम और बहुत सारी अनगिनत बातें, जो शुरू यहीं से होती हैं—
+“तुमको पता है, आज क्या हुआ?”</blockquote>
+          <p class="sign">With lots of love,<br>Stay happy, healthy &amp; positive.</p>
+          <p class="stat" id="aStat"></p>
+        </div>
+      </div>
+    </section>
 
-<div class="book-overlay" id="bookOverlay">
-  <button class="close-btn" id="closeBook" aria-label="बंद करें">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-  </button>
+    <section class="view" id="v-settings">
+      <div class="set">
+        <div class="set-card">
+          <h2>पढ़ने का अनुभव</h2>
+          <div class="preview" data-theme="paper"><p>बनारस की शाम है, गंगा किनारे चाय का प्याला है,</p><p>एक चुस्की तुम्हारी, एक घूँट हमारा — और सामने गंगा की धारा है।</p></div>
+          <div class="srow"><span>अक्षर का आकार</span><span class="ctl"><button class="tbtn" id="sMinus" aria-label="छोटा">A−</button><b class="scaleVal"></b><button class="tbtn" id="sPlus" aria-label="बड़ा">A+</button></span></div>
+          <div class="srow"><span>पन्ने का रंग</span><span class="dots"><button class="dot" data-t="paper" aria-label="सफ़ेद-क्रीम"></button><button class="dot" data-t="sepia" aria-label="सेपिया"></button><button class="dot" data-t="night" aria-label="रात"></button></span></div>
+          <div class="srow"><span>पन्ना पलटने की आवाज़</span><button class="tbtn soundBtn">चालू</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
 
-  <div class="cover-stage" id="coverStage">
-    <img src="front-page.png.png" class="cover-img" id="coverImg" alt="आई लव यू मोर, पापा — पुस्तक का मुखपृष्ठ">
-    <button class="open-btn" id="openBtn">पुस्तक खोलें</button>
-  </div>
-
-  <div class="reader-stage" id="readerStage" hidden>
-    <div class="book">
-      <div class="page" id="pageEl"></div>
+<div class="overlay" id="overlay" data-theme="paper" role="dialog" aria-modal="true" aria-label="पुस्तक पाठक">
+  <div class="cover-stage" id="coverStage" hidden>
+    <button class="x" id="closeCover" aria-label="बंद करें"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+    <div class="cover-book" id="coverBook"></div>
+    <div class="cover-title" id="coverTitle"></div>
+    <div class="cover-actions" id="coverActions">
+      <button class="btn" id="openBtn">पुस्तक खोलें</button>
+      <button class="btn ghost" id="restartBtn" hidden>शुरू से पढ़ें</button>
     </div>
-    <div class="reader-controls">
-      <button id="prevBtn">‹ पिछला</button>
-      <span id="pageCounter">1 / 1</span>
-      <button id="nextBtn">अगला ›</button>
-    </div>
+  </div>
+
+  <div class="reader" id="reader" hidden>
+    <header class="topbar">
+      <button class="tbtn" id="backBtn">‹ पुस्तकालय</button>
+      <div class="tt" id="topTitle"></div>
+      <button class="tbtn" id="setBtn" aria-label="पढ़ने की सेटिंग" aria-expanded="false">Aa</button>
+      <div class="pop" id="pop" hidden>
+        <div class="row"><span>अक्षर का आकार</span><span><button id="fMinus" aria-label="छोटा">A−</button> <button id="fPlus" aria-label="बड़ा">A+</button></span></div>
+        <div class="row"><span>कागज़</span><span class="dots"><button class="dot" data-t="paper" aria-label="सफ़ेद-क्रीम"></button><button class="dot" data-t="sepia" aria-label="सेपिया"></button><button class="dot" data-t="night" aria-label="रात"></button></span></div>
+        <div class="row"><span>पन्ना पलटने की आवाज़</span><button id="soundBtn" class="soundBtn">चालू</button></div>
+      </div>
+    </header>
+    <div class="stage" id="stage"><div class="book" id="book"></div></div>
+    <footer class="bottombar">
+      <button class="tbtn" id="prevBtn" aria-label="पिछला पन्ना">‹ पिछला</button>
+      <div class="scrub-wrap"><input type="range" id="scrub" min="0" max="1" value="0" aria-label="पन्ना चुनें"><span id="pageCounter"></span></div>
+      <button class="tbtn" id="nextBtn" aria-label="अगला पन्ना">अगला ›</button>
+    </footer>
+    <div class="page measurer" id="measurer"><div class="page-inner" id="measureInner"></div></div>
   </div>
 </div>
 
 <script>
-  // starfield
-  const starsWrap = document.getElementById('stars');
-  for(let i=0;i<50;i++){
-    const s = document.createElement('span');
-    s.style.left = Math.random()*100 + '%';
-    s.style.top = Math.random()*60 + '%';
-    s.style.animationDelay = (Math.random()*3).toFixed(2) + 's';
-    starsWrap.appendChild(s);
-  }
 
-  document.getElementById('scrollHint').addEventListener('click', ()=>{
-    document.getElementById('select').scrollIntoView({behavior:'smooth'});
-  });
+/* ---------- लेखक का परिचय: यहाँ अपनी जानकारी भरिए ---------- */
+const AUTHOR={
+  name:'R. D. Tiwari',
+  role:'लेखक',                 // जैसे: 'लेखक · कवि'
+  photo:'author.jpg',          // अपनी फ़ोटो इसी नाम से index.html के पास रखिए (न मिले तो चित्र दिखेगा)
+  intro:[                      // हर पंक्ति एक अनुच्छेद है, जैसे: 'मैं ऋषिकेश…',
+  ]
+};
 
-  // ---------- story pages ----------
- const pages = [
+const stories = [
+{
+  id:'story-1',
+  title:'I Love you more, पापा',
+  author:'R. D. Tiwari',
+  accent:'#a6534a',
+  cover:'front-page.png.png',
+  blurb:'मणिकर्णिका घाट से एक अनकही प्रेम कहानी — पिता और पुत्र के बीच के उस रिश्ते की, जिसे शब्दों में बाँधना मुश्किल है।',
+  pages:[
 
   `<div class="quote-block">
     <p>"उनके लिए, जिनको मैं कह सकूँ — 'जाना ज़रूरी है क्या???'"</p>
@@ -722,81 +607,438 @@
   `<div class="closing-block">
     <p>यह कहानी यहीं समाप्त होती है, पर वह रिश्ता कभी नहीं — जो एक पिता और एक पुत्र के बीच, हर घर में, हर घाट पर, आज भी साँस लेता है।</p>
     <p class="sign">With lots of love,<br>Stay happy, healthy &amp; positive.<br>— R. D. Tiwari</p>
-    
   </div>`
+  ]
+},
+
+/* ---------- दूसरी कहानी: यहाँ अपने पन्ने paste कीजिए ---------- */
+
+{
+  id: 'story-2',
+  title: 'आलिंगन',
+  author: 'R. D. Tiwari',
+  accent: '#7a4a2e',
+  cover: 'aalingan.png',
+  blurb: 'कुछ दूरियाँ समय से नहीं, एक अधूरे आलिंगन से पैदा होती हैं।',
+  pages: [
+    `<p><em>“Perhaps one thing I failed to give you when you needed me was an embrace that said, without words, ‘I am here with you.’ And maybe that small absence created a much bigger distance between us.”</em></p>
+     <p><em>“कुछ दूरियाँ समय से नहीं, एक अधूरे आलिंगन से पैदा होती हैं।”</em></p>`,
+
+    `<h2>आलिंगन</h2>
+     <h3>उनको ज़ोर से गले लगाने के ख़याल रात में ही क्यों आते हैं?</h3>
+     <p>आज हमारी दोस्ती को कितना समय हो गया, शायद यह मायने नहीं रखता। मायने रखता है तो यह कि हमारी दोस्ती किस मुकाम तक पहुँची थी—और उसे शब्दों में बयान करने के लिए शायद शब्द हमेशा कम पड़ जाएँ।</p>
+     <p>एक प्रश्न है तुमसे—</p>
+     <p><strong>क्या तुम्हें याद है, मैंने तुम्हें आख़िरी बार कसकर गले कब लगाया था?</strong></p>
+     <p>सारा भ्रम, सारा ज़माना और रिश्तों को देखने-समझने के बाद मैंने इतना तो स्वीकार कर लिया है कि <strong>अपनों से गले लगना केवल गले लगना नहीं होता।</strong> उसमें बहुत कुछ छिपा होता है।</p>
+     <p>कभी किसी को यह कहने के लिए कि— <strong>“मैं हूँ।”</strong></p>
+     <p>कभी बिना कुछ पूछे यह समझाने के लिए कि— <strong>“तुम्हें यह सब अकेले नहीं सहना है।”</strong></p>
+     <p>कभी किसी के आँसू रोकने के लिए नहीं, बल्कि उन्हें बह जाने देने के लिए। और कभी केवल इसलिए कि उस क्षण कहने के लिए कोई शब्द बचता ही नहीं।</p>`,
+
+    `<p>क्या आपने कभी किसी की <strong>अनुपस्थिति</strong> को महसूस किया है?</p>
+     <p>अगर नहीं, तो उनकी उपस्थिति में एक बार उन्हें जी भरकर, प्यार से, कसकर गले लगाइए। <strong>जी भरकर महसूस कीजिए उन्हें अपने बिल्कुल करीब।</strong></p>
+     <p>फिर स्वयं से पूछिए— <strong>गले लगने से हम कितना पास आते हैं?</strong></p>
+     <p>शायद शरीर से कुछ इंच। लेकिन मन से कितना?</p>
+     <p>शायद उतना, जितना वर्षों की बातचीत भी कभी-कभी नहीं ला पाती।</p>
+     <p>क्योंकि गले लगने की अपनी एक भाषा होती है। एक ऐसी भाषा, जिसे बोलने के लिए होंठों की आवश्यकता नहीं होती। जिसे सुनने के लिए कानों की आवश्यकता नहीं होती।</p>
+     <p>कभी आँखें ही आँखों को गले लगा लेती हैं। कभी दूर खड़े दो व्यक्ति केवल एक-दूसरे की आँखों में देखकर कह देते हैं— <strong>“मैं समझ रहा हूँ।”</strong></p>
+     <p>और कभी बाँहें वह कह देती हैं, जिसे आँखें भी कहने से डरती हैं।</p>`,
+
+    `<p>क्या आपने कभी सोचा है— <strong>बाँहें गले में डालकर रोने और अकेले रोने में क्या अंतर होता है?</strong></p>
+     <p>आँसू तो दोनों में वही होते हैं। दुःख भी वही होता है। फिर अंतर कहाँ है?</p>
+     <p>शायद अंतर केवल इतना है कि अकेले रोते हुए मन कहता है— <strong>“मुझे यह सब स्वयं सहना है।”</strong></p>
+     <p>और किसी की बाँहों में रोते हुए वही मन पहली बार कह पाता है— <strong>“नहीं... कोई है जो मेरे साथ है।”</strong></p>
+     <p>इसलिए शायद किसी का गले लग जाना दुःख को समाप्त नहीं करता। वह बस दुःख का भार <strong>आधा</strong> कर देता है। और कभी-कभी इतना ही बहुत होता है।</p>`,
+
+    `<p>मुझे लगता है, आलिंगन संसार की सबसे कम आंकी गई भावनाओं में से एक है।</p>
+     <p>हमने प्रेम के लिए कविताएँ लिखीं। विरह के लिए गीत लिखे। मिलन के लिए कहानियाँ लिखीं। लेकिन उस एक क्षण के लिए कितने शब्द हैं, जब कोई व्यक्ति दूसरे को अपनी बाँहों में भरकर बस इतना कहता है—</p>
+     <p><strong>“कुछ मत कहो... मैं हूँ।”</strong></p>
+     <p>शायद उस समय शब्दों की नहीं, केवल उपस्थिति की आवश्यकता होती है।</p>
+     <p>और इसलिए कुछ आलिंगनों से केवल आँसू नहीं निकलते। <strong>दुआएँ निकलती हैं।</strong></p>
+     <p>मन की वे दुआएँ, जिन्हें हम किसी के सामने बोल नहीं पाते।</p>`,
+
+    `<p>और शायद आलिंगन के भी कई रूप होते हैं।</p>
+     <p>किसी का कंधे पर हाथ रख देना— <strong>“मैं तुम्हारे साथ हूँ।”</strong></p>
+     <p>किसी को बाँहों में भर लेना— <strong>“तुम मेरे अपने हो।”</strong></p>
+     <p>किसी को देर तक थामे रहना— <strong>“अभी मत जाओ।”</strong></p>
+     <p>किसी के रोते हुए सिर को अपने सीने से लगा लेना— <strong>“रो लो... मैं यहीं हूँ।”</strong></p>
+     <p>बहुत समय बाद किसी को कसकर गले लगाना— <strong>“तुम्हारी कमी मुझे भी महसूस हुई।”</strong></p>
+     <p>और कभी-कभी...</p>
+     <p>सिर्फ़ आँखों से गले लगाना— <strong>“मैं तुम्हें बिना छुए भी महसूस कर सकता हूँ।”</strong></p>
+     <p>शायद यही कारण है कि मैं अब आलिंगन को केवल शरीरों का मिलना नहीं मानता। <strong>आलिंगन दो मनों के बीच की दूरी का कुछ क्षणों के लिए समाप्त हो जाना है।</strong></p>`,
+
+    `<p>मुझे <em>96</em>—तमिल सिनेमा की वह अद्भुत फ़िल्म—याद आती है। राम और जानू की कहानी में प्रेम था, लेकिन उस प्रेम के हिस्से में बहुत-सी ख़ामोशियाँ भी थीं।</p>
+     <p>कभी-कभी सोचता हूँ— <strong>अगर उस हवाई अड्डे पर जानू ने राम को अपने आलिंगन में भर लिया होता, तो क्या बदल जाता?</strong></p>
+     <p>शायद उनकी कहानी का अंत नहीं बदलता। शायद दोनों को फिर भी अपने-अपने रास्तों पर लौटना पड़ता।</p>
+     <p>लेकिन शायद उस एक आलिंगन में वह सब कह दिया जाता, जिसे दोनों पूरी रात शब्दों में नहीं कह पाए।</p>
+     <p>शायद वह आलिंगन प्रेम को पाने का प्रयास नहीं होता। <strong>बस उसे स्वीकार करने का एक अंतिम क्षण होता।</strong></p>`,
+
+    `<p>फिर <em>Hridayam</em> याद आती है। वहाँ प्रेम केवल किसी एक व्यक्ति को पकड़कर रखने का नाम नहीं है। वहाँ जीवन आगे बढ़ता है। लोग बदलते हैं। रिश्ते बदलते हैं।</p>
+     <p>और मनुष्य यह सीखता है कि किसी को सच्चा चाहना कभी-कभी उसे अपने पास रखने से अधिक, उसके साथ जीवन को स्वीकार करना होता है।</p>
+     <p>और फिर <em>Three of Us</em>—जहाँ कुछ रिश्ते हमारे जीवन से चले जाते हैं, लेकिन हमारे भीतर से नहीं जाते। कुछ लोग हमारे साथ नहीं रहते, फिर भी हमारी स्मृतियों में एक पूरा संसार बनकर रहते हैं।</p>
+     <p>तब समझ आता है— <strong>हर सच्चा प्रेम साथ रहने की माँग नहीं करता।</strong></p>
+     <p>कुछ प्रेम केवल इतना चाहते हैं कि जिसे हमने अपने मन में जगह दी है, वह जहाँ भी रहे, सुखी रहे। और शायद यही वह जगह है जहाँ मेरे लिए प्रेम और अधिकार अलग हो जाते हैं।</p>`,
+
+    `<p>मैं तुम्हारे बारे में भी कुछ ऐसा ही सोचता हूँ।</p>
+     <p>मैं नहीं जानता कि हमारे बीच इस रिश्ते को कौन-सा नाम देना चाहिए। दोस्ती कहूँ तो शब्द छोटा लगता है। प्रेम कहूँ तो शायद शब्द अपने साथ ऐसी अपेक्षाएँ लेकर आता है, जिन्हें मैं तुम पर कभी रखना नहीं चाहता।</p>
+     <p>इसलिए शायद मैं इसे कोई नाम देना ही नहीं चाहता। <strong>बस एक भावना की तरह अपने भीतर रखना चाहता हूँ।</strong></p>
+     <p>तुम्हारे लिए मेरे भीतर दोस्ती से कहीं अधिक है। लेकिन वह “अधिक” तुम्हें पाने की इच्छा नहीं है। तुम पर अपना अधिकार जताने की इच्छा नहीं है। तुमसे किसी उत्तर की अपेक्षा भी नहीं है।</p>
+     <p>वह बस इतना है कि— <strong>तुम मेरे लिए बहुत मायने रखती हो।</strong></p>
+     <p>इतना कि तुम्हारी आँखों में उदासी देखूँ तो मन तुम्हारे पास जाकर बैठना चाहता है। इतना कि तुम्हारे भीतर कुछ टूट रहा हो तो तुम्हें यह कहने का मन करता है— <strong>“इधर आओ... कुछ मत कहो।”</strong></p>
+     <p>और तुम्हें बस अपने आलिंगन में भर लेना चाहता है।</p>
+     <p>शायद इसीलिए मुझे लगता है कि मैंने तुम्हें कुछ दिया ही नहीं जो देना चाहिए था। शायद जब तुम्हें मेरी आवश्यकता थी, <strong>बस तुम्हें गले लगा लेना चाहिए था।</strong></p>`,
+
+    `<p>कहते हैं, सरस्वती नदी अदृश्य होकर भी कहीं न कहीं बहती रहती है। उसे वही खोज पाता है जो सच में उसे खोजने निकलता है।</p>
+     <p>शायद कुछ भावनाएँ भी ऐसी ही होती हैं। वे दिखाई नहीं देतीं। वे कही नहीं जातीं। वे माँगी नहीं जातीं। बस भीतर बहती रहती हैं। <strong>सरस्वती की तरह।</strong></p>
+     <p>और शायद आलिंगन भी कुछ ऐसा ही है। जो सच में किसी को गले लगाना चाहता है, वही उसकी भाषा समझ पाता है।</p>
+     <p>और जो सच में उस भाषा को समझ ले… वह जानता है कि बाँहों में भरना हमेशा किसी को अपना बनाने के लिए नहीं होता।</p>
+     <p>कभी-कभी किसी को बाँहों में भरना केवल यह कहने के लिए होता है— <strong>“तुम जैसे हो, वैसे ही मेरे लिए बहुत हो।”</strong></p>`,
+
+    `<p>और अगर कभी फिर मुलाक़ात हुई… तो मेरे मन में एक प्रश्न रहेगा— <strong>क्या हम फिर वैसे ही गले लग पाएँगे?</strong></p>
+     <p>क्या हमारे बीच आई हुई यह दूरी उन कुछ पलों के लिए समाप्त हो पाएगी?</p>
+     <p>क्या मैं तुम्हें उसी तरह बाँहों में भर पाऊँगा, जैसे कोई अपने बहुत पुराने, बहुत अपने दुःख को सीने से लगा लेता है?</p>
+     <p>मुझे नहीं पता। शायद तुम मुझे गले लगाओ। शायद नहीं। शायद केवल मुस्कुराओ। शायद केवल आँखों से कह दो— <strong>“मैं समझ गई।”</strong></p>
+     <p>लेकिन मेरे भीतर एक बात हमेशा रहेगी।</p>
+     <p>तुम मेरे लिए केवल एक दोस्त नहीं थीं। और शायद कभी केवल दोस्त रह भी नहीं पाईं। <strong>तुम मेरे लिए एक बहुत सुंदर विचार बन गईं।</strong></p>
+     <p>ऐसा विचार जिसे पाने की इच्छा से अधिक, जिसे अपने भीतर सुरक्षित रखने की इच्छा होती है। ऐसा विचार जिसके लिए मन में प्रेम से अधिक <strong>समर्पण</strong> है। और ऐसा अपनापन… जिसे किसी नाम की आवश्यकता नहीं।</p>`,
+
+    `<p>कभी-कभी सोचता हूँ— अगर उस समय तुम्हें मैंने कसकर गले लगाया होता, तो शायद आज हमारे बीच इतनी दूरी न होती।</p>
+     <p>लेकिन फिर लगता है… शायद कुछ बातें देर से समझ आती हैं।</p>
+     <p>कुछ लोग हमें यह सिखाने के लिए मिलते हैं कि प्रेम केवल साथ रहने का नाम नहीं। और कुछ लोग हमें यह सिखाकर चले जाते हैं कि— <strong>किसी के लिए उपस्थित रहना भी प्रेम का एक रूप है।</strong></p>
+     <p>इसलिए अगर कभी तुम्हें मेरे भीतर की यह बात समझ आए… तो इसे किसी वादे की तरह मत लेना। मैं तुमसे कुछ माँग नहीं रहा।</p>
+     <p>मैं बस इतना कहना चाहता हूँ— <strong>मेरे मन में तुम्हारे लिए हमेशा एक बहुत सुंदर जगह रहेगी।</strong></p>`,
+
+    `<p>और अगर कभी तुम्हें लगे कि दुनिया बहुत भारी हो गई है… तो शायद मेरे पास तुम्हारे लिए आज भी वही एक उत्तर होगा—</p>
+     <p><strong>आओ।</strong></p>
+     <p><strong>कुछ मत कहो।</strong></p>
+     <p><strong>बस एक बार गले लग जाओ।</strong></p>
+     <p>क्योंकि शायद कुछ दूरियाँ शब्दों से नहीं मिटतीं।</p>
+     <p><strong>कुछ दूरियाँ केवल एक आलिंगन समझता है।</strong></p>`
+  ]
+},
+
+/* ---------- तीसरी: जल्द आ रही है (pages खाली = "जल्द आ रहा है") ---------- */
+{
+  id:'story-3',
+  title:'वापसी',
+  author:'R. D. Tiwari',
+  accent:'#3d5a6a',
+  cover:'',
+  blurb:'एक और सफ़र, एक और रिश्ता, एक और घर लौटने की कहानी।',
+  pages:[]
+}
 ];
-  let current = 0;
-  let animating = false;
-  const pageEl = document.getElementById('pageEl');
-  const counterEl = document.getElementById('pageCounter');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
 
-  function renderPage(){
-    pageEl.innerHTML = pages[current] + `<div class="page-num">${current+1} / ${pages.length}</div>`;
-    counterEl.textContent = (current+1) + ' / ' + pages.length;
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current === pages.length - 1;
-    pageEl.scrollTop = 0;
+/* =====================================================================
+   ENGINE  (यहाँ बदलाव की ज़रूरत नहीं)
+   ===================================================================== */
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem('rishi:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('rishi:'+k,JSON.stringify(v))}catch(e){}}};
+const prefs=Object.assign({scale:1,theme:'paper',sound:true},store.get('prefs',{}));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FLIP=reduce?30:850;
+const dn=n=>String(n).replace(/\d/g,d=>'०१२३४५६७८९'[d]);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+/* ---------- shell: background, navigation, views ---------- */
+const sw=$('#stars');
+for(let i=0;i<60;i++){const s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*60+'%';s.style.animationDelay=(Math.random()*3).toFixed(2)+'s';sw.appendChild(s)}
+const dw=$('#diyas');
+for(let i=0;i<7;i++){const d=el('i','diya');d.style.setProperty('--t',(26+Math.random()*16).toFixed(1)+'s');d.style.setProperty('--d',(-Math.random()*36).toFixed(1)+'s');d.style.bottom=(24+Math.random()*34)+'px';dw.appendChild(d)}
+
+function coverEl(s){
+  const wrap=el('div','');wrap.style.cssText='width:100%;height:100%';
+  const fb=()=>{wrap.innerHTML=`<div class="cover-fallback" style="--acc:${s.accent||'#a6534a'}"><span class="cf-title">${s.title}</span><span class="cf-author">${s.author||''}</span></div>`};
+  if(s.cover){const im=new Image();im.alt=s.title+' — पुस्तक का मुखपृष्ठ';im.onerror=fb;im.style.cssText='width:100%;height:100%;object-fit:cover;display:block';im.src=s.cover;wrap.appendChild(im)}else fb();
+  return wrap;
+}
+const app=$('#app');
+const views=['home','library','author','settings'];
+const titles={home:'मुखपृष्ठ',library:'पुस्तकालय',author:'लेखक',settings:'पढ़ने की सेटिंग'};
+function go(v,fromHash){
+  if(!views.includes(v))v='home';
+  views.forEach(x=>$('#v-'+x).classList.toggle('on',x===v));
+  document.querySelectorAll('.nav-i').forEach(b=>{if(b.dataset.go===v)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  $('#mTitle').textContent=titles[v];
+  app.classList.remove('drawer');
+  if(!fromHash&&location.hash!=='#'+v)history.replaceState(null,'','#'+v);
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+addEventListener('hashchange',()=>go(location.hash.slice(1),true));
+$('#menuBtn').addEventListener('click',()=>app.classList.toggle('drawer'));
+$('#scrim').addEventListener('click',()=>app.classList.remove('drawer'));
+if(store.get('collapsed',false))app.classList.add('collapsed');
+$('#collapse').addEventListener('click',()=>{app.classList.toggle('collapsed');store.set('collapsed',app.classList.contains('collapsed'))});
+
+/* ---------- library: all books ---------- */
+const isReady=s=>s.pages.length>0;
+const prog=s=>{const c=store.get('p:'+s.id,0);return s.pages.length>1?Math.round(c/(s.pages.length-1)*100):0};
+function renderLibrary(){
+  const g=$('#books');g.innerHTML='';
+  const n=stories.filter(isReady).length;
+  $('#libCount').textContent=dn(stories.length)+' किताबें · '+dn(n)+' पढ़ने के लिए तैयार';
+  stories.forEach((s,i)=>{
+    const ok=isReady(s),p=prog(s);
+    const c=el('article','bk'+(ok?'':' soon'));
+    const cv=el('div','bk-cover');cv.appendChild(coverEl(s));
+    if(ok){cv.tabIndex=0;cv.setAttribute('role','button');cv.setAttribute('aria-label',s.title+' खोलें');cv.addEventListener('click',()=>openStory(i));cv.addEventListener('keydown',e=>{if(e.key==='Enter')openStory(i)})}
+    c.appendChild(cv);
+    c.insertAdjacentHTML('beforeend',`<span class="chip ${ok?'':'muted'}">${ok?'पढ़ने के लिए तैयार':'जल्द आ रहा है'}</span><h3>${s.title}</h3><p class="by">${s.author}</p><p class="bk-blurb">${s.blurb}</p>`+(ok&&p>0?`<span class="pbar"><i style="--w:${p}%"></i></span>`:''));
+    const b=el('button','btn',ok?(p>0?'पढ़ना जारी रखें':'पढ़ना शुरू करें'):'जल्द आ रहा है');
+    b.disabled=!ok;if(ok)b.addEventListener('click',()=>openStory(i));
+    c.appendChild(b);g.appendChild(c);
+  });
+}
+
+/* ---------- author page ---------- */
+$('#aName').textContent=AUTHOR.name;$('#aRole').textContent=AUTHOR.role;
+
+if(AUTHOR.photo){const im=new Image();im.alt=AUTHOR.name;im.onload=()=>{const f=$('#aPhoto');f.innerHTML='';f.appendChild(im)};im.src=AUTHOR.photo}
+
+/* ---------- continue card + stats ---------- */
+function refreshShell(){
+  renderLibrary();
+  const last=stories.find(s=>s.id===store.get('last','')&&isReady(s))||stories.find(isReady);
+  if(!last){$('#cont').hidden=true;return}
+  const p=prog(last);
+  $('#cont').dataset.i=stories.indexOf(last);
+  const cc=$('#contCover');cc.innerHTML='';cc.appendChild(coverEl(last));
+  $('#contTitle').textContent=last.title;
+  $('#contSub').textContent=p>0?dn(p)+'% पढ़ा':'यहीं से शुरू करें';
+  $('#contBar').style.setProperty('--w',p+'%');
+  $('#homeRead').textContent=p>0?'पढ़ना जारी रखें':'पढ़ना शुरू करें';
+  const n=stories.filter(isReady).length;
+  $('#aStat').textContent=dn(n)+' कहानी'+(n>1?'याँ':'')+' पढ़ने के लिए तैयार · '+dn(stories.length-n)+' जल्द आ रही '+(stories.length-n>1?'हैं':'है');
+}
+$('#cont').addEventListener('click',()=>openStory(+$('#cont').dataset.i));
+$('#homeRead').addEventListener('click',()=>openStory(+$('#cont').dataset.i||0));
+
+/* ---------- reader state ---------- */
+let story=null,pages=[],cur=0,spread=false,busy=false,ready=false;
+const overlay=$('#overlay'),coverStage=$('#coverStage'),reader=$('#reader'),book=$('#book'),stage=$('#stage'),
+      measurer=$('#measurer'),mInner=$('#measureInner'),scrub=$('#scrub');
+
+/* page-flip sound (synthesised, no files) */
+let actx=null;
+function flipSound(){
+  if(!prefs.sound||reduce)return;
+  try{
+    actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    const len=actx.sampleRate*.32,buf=actx.createBuffer(1,len,actx.sampleRate),d=buf.getChannelData(0);
+    for(let i=0;i<len;i++){const t=i/len;d[i]=(Math.random()*2-1)*Math.pow(1-t,2.2)*(t<.08?t/.08:1)}
+    const src=actx.createBufferSource();src.buffer=buf;
+    const f=actx.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(900,actx.currentTime);f.frequency.exponentialRampToValueAtTime(3200,actx.currentTime+.3);f.Q.value=.7;
+    const g=actx.createGain();g.gain.value=.22;
+    src.connect(f);f.connect(g);g.connect(actx.destination);src.start();
+  }catch(e){}
+  if(navigator.vibrate)try{navigator.vibrate(6)}catch(e){}
+}
+
+/* ---------- layout ---------- */
+function layout(){
+  const r=stage.getBoundingClientRect(),W=r.width-12,H=r.height-12;
+  spread=W>=880;
+  let pw,ph;
+  if(spread){pw=Math.min((W-24)/2,H*.7,580);ph=pw/.7}else{pw=Math.min(W,540);ph=Math.min(H,pw*1.7)}
+  pw=Math.floor(pw);ph=Math.floor(ph);
+  const fs=Math.max(13,Math.min(18.5,pw/24))*prefs.scale;
+  const px=Math.round(Math.max(20,Math.min(54,pw*.1)));
+  const s=overlay.style;
+  s.setProperty('--pw',pw+'px');s.setProperty('--ph',ph+'px');s.setProperty('--cols',spread?2:1);
+  s.setProperty('--fs',fs.toFixed(2)+'px');s.setProperty('--px',px+'px');s.setProperty('--pt',(px+14)+'px');s.setProperty('--pb',(px+18)+'px');
+  book.className='book '+(spread?'two':'one');
+}
+
+/* ---------- pagination: chunks -> real pages ---------- */
+const fits=()=>mInner.scrollHeight<=mInner.clientHeight+1;
+function paginate(){
+  const out=[];
+  story.pages.forEach((html,ci)=>{
+    const tpl=el('div','',html);
+    if(tpl.querySelector('.quote-block,.closing-block')){out.push({html,ci,solo:true});return}
+    mInner.innerHTML='';
+    const flush=()=>{if(mInner.childNodes.length){out.push({html:mInner.innerHTML,ci});mInner.innerHTML=''}};
+    const addPara=p=>{
+      let words=p.textContent.split(' ').filter(Boolean);
+      const make=k=>{const e=p.cloneNode(false);e.textContent=words.slice(0,k).join(' ');return e};
+      while(words.length){
+        let e=make(words.length);mInner.appendChild(e);
+        if(fits())return;
+        mInner.removeChild(e);
+        let lo=1,hi=words.length-1,best=0;
+        while(lo<=hi){const m=(lo+hi)>>1,t=make(m);mInner.appendChild(t);const ok=fits();mInner.removeChild(t);if(ok){best=m;lo=m+1}else hi=m-1}
+        if(!best){if(mInner.childNodes.length){flush();continue}best=1}
+        mInner.appendChild(make(best));words=words.slice(best);flush();
+      }
+    };
+    [...tpl.children].forEach(n=>{
+      const c=n.cloneNode(true);mInner.appendChild(c);
+      if(fits())return;
+      mInner.removeChild(c);
+      if(c.tagName==='P'&&!c.innerHTML.includes('<'))addPara(c);
+      else{flush();mInner.appendChild(c)}
+    });
+    flush();
+  });
+  mInner.innerHTML='';
+  return out;
+}
+
+/* ---------- page elements ---------- */
+function mk(i,side){
+  const p=el('div','page '+side);
+  const d=pages[i];
+  if(!d){p.classList.add('blank');return p}
+  if(d.solo)p.classList.add('nofoot');
+  const head=side==='left'?story.author:story.title;
+  p.innerHTML=`<div class="page-inner">${d.html}</div><div class="runhead">${head}</div><div class="foot">${dn(i+1)}</div>`;
+  return p;
+}
+const face=(c,pg)=>{const f=el('div','face '+c);f.appendChild(pg);f.appendChild(el('div','shade'));return f};
+
+function renderStatic(){
+  book.innerHTML='';
+  if(spread){cur=Math.ceil(cur/2)*2;book.append(mk(cur-1,'left'),mk(cur,'right'))}
+  else book.append(mk(cur,'single'));
+  updateUI();
+}
+function updateUI(){
+  const n=pages.length,shown=Math.min(cur,n-1);
+  if(spread){
+    const a=cur-1>=0?dn(cur):'',b=cur<n?dn(cur+1):'';
+    $('#pageCounter').textContent='पृष्ठ '+(a&&b?a+'–'+b:(a||b))+' / '+dn(n);
+  }else $('#pageCounter').textContent='पृष्ठ '+dn(cur+1)+' / '+dn(n);
+  scrub.max=n-1;scrub.value=shown;scrub.style.setProperty('--p',(n>1?shown/(n-1)*100:0)+'%');
+  $('#prevBtn').disabled=cur<=0;
+  $('#nextBtn').disabled=spread?cur+1>=n:cur>=n-1;
+  if(pages[shown])store.set('p:'+story.id,pages[shown].ci);
+}
+
+/* ---------- flipping ---------- */
+function flip(dir){
+  if(busy||!ready)return;
+  const n=pages.length;busy=true;
+  if(spread){
+    const s=cur/2,maxS=Math.floor(n/2);
+    if(s+dir<0||s+dir>maxS){busy=false;return}
+    flipSound();
+    const L=book.querySelector('.page.left'),R=book.querySelector('.page.right');
+    const leaf=el('div','leaf '+(dir>0?'next':'prev'));
+    if(dir>0){
+      leaf.append(face('front',mk(2*s,'right')),face('back',mk(2*s+1,'left')));
+      R.replaceWith(mk(2*s+2,'right'));book.append(leaf);leaf.offsetWidth;leaf.classList.add('go');
+      setTimeout(()=>{L.replaceWith(mk(2*s+1,'left'));leaf.remove();done(2*(s+1))},FLIP);
+    }else{
+      leaf.append(face('front',mk(2*s-1,'left')),face('back',mk(2*s-2,'right')));
+      L.replaceWith(mk(2*s-3,'left'));book.append(leaf);leaf.offsetWidth;leaf.classList.add('go');
+      setTimeout(()=>{R.replaceWith(mk(2*s-2,'right'));leaf.remove();done(2*(s-1))},FLIP);
+    }
+  }else{
+    const t=cur+dir;
+    if(t<0||t>=n){busy=false;return}
+    flipSound();
+    const S=book.querySelector('.page'),leaf=el('div','leaf one');
+    if(dir>0){
+      leaf.append(face('front',mk(cur,'single')));
+      S.replaceWith(mk(t,'single'));book.append(leaf);leaf.offsetWidth;leaf.classList.add('go');
+      setTimeout(()=>{leaf.remove();done(t)},reduce?30:620);
+    }else{
+      leaf.classList.add('in');leaf.append(face('front',mk(t,'single')));
+      book.append(leaf);leaf.offsetWidth;leaf.classList.add('go');
+      setTimeout(()=>{S.replaceWith(mk(t,'single'));leaf.remove();done(t)},reduce?30:620);
+    }
   }
+}
+function done(t){cur=t;busy=false;updateUI()}
+function goTo(i){if(busy)return;cur=Math.max(0,Math.min(pages.length-1,i));renderStatic()}
 
-  function turn(dir){
-    if(animating) return;
-    if(dir === 1 && current >= pages.length - 1) return;
-    if(dir === -1 && current <= 0) return;
-    animating = true;
-    pageEl.classList.add(dir === 1 ? 'leave-next' : 'leave-prev');
-    setTimeout(()=>{
-      current += dir;
-      renderPage();
-      pageEl.classList.remove('leave-next','leave-prev');
-      pageEl.classList.add(dir === 1 ? 'enter-next' : 'enter-prev');
-      requestAnimationFrame(()=>{
-        requestAnimationFrame(()=>{ pageEl.classList.add('settle'); });
-      });
-      setTimeout(()=>{
-        pageEl.classList.remove('enter-next','enter-prev','settle');
-        animating = false;
-      }, 400);
-    }, 380);
-  }
+/* ---------- build / rebuild ---------- */
+async function build(ci){
+  ready=false;
+  layout();
+  try{await Promise.race([Promise.all([document.fonts.load('16px "Tiro Devanagari Hindi"','क'),document.fonts.load('italic 16px "Tiro Devanagari Hindi"','क')]),new Promise(r=>setTimeout(r,1500))])}catch(e){}
+  layout();
+  pages=paginate();
+  const idx=pages.findIndex(p=>p.ci>=ci);
+  cur=idx<0?0:idx;
+  renderStatic();ready=true;
+}
+const curCi=()=>pages.length?pages[Math.min(cur,pages.length-1)].ci:0;
+let rz;addEventListener('resize',()=>{if(!story||reader.hidden)return;clearTimeout(rz);rz=setTimeout(()=>{if(!busy)build(curCi())},220)});
 
-  nextBtn.addEventListener('click', ()=> turn(1));
-  prevBtn.addEventListener('click', ()=> turn(-1));
-  document.addEventListener('keydown', (e)=>{
-    if(document.getElementById('readerStage').hidden) return;
-    if(e.key === 'ArrowRight') turn(1);
-    if(e.key === 'ArrowLeft') turn(-1);
-  });
+/* ---------- open / close ---------- */
+function applyTheme(){
+  overlay.dataset.theme=prefs.theme;
+  document.querySelectorAll('.dot').forEach(d=>d.classList.toggle('on',d.dataset.t===prefs.theme));
+  document.querySelectorAll('.soundBtn').forEach(b=>b.textContent=prefs.sound?'चालू':'बंद');document.querySelectorAll('.preview').forEach(p=>{p.dataset.theme=prefs.theme;p.style.fontSize=(16*prefs.scale).toFixed(1)+'px'});document.querySelectorAll('.scaleVal').forEach(b=>b.textContent=dn(Math.round(prefs.scale*100))+'%');
+  document.querySelector('meta[name=theme-color]').content=prefs.theme==='night'?'#120c19':'#241a30';
+}
+function openStory(i){
+  story=stories[i];store.set('last',story.id);
+  document.body.classList.add('lock');
+  overlay.classList.add('visible');
+  reader.hidden=true;coverStage.hidden=false;$('#pop').hidden=true;
+  const cb=$('#coverBook');cb.className='cover-book';cb.innerHTML='';cb.appendChild(coverEl(story));
+  $('#coverTitle').textContent=story.title;
+  const saved=store.get('p:'+story.id,0);
+  $('#openBtn').textContent=saved>0?'पढ़ना जारी रखें':'पुस्तक खोलें';
+  $('#restartBtn').hidden=!(saved>0);
+  $('#coverTitle').classList.remove('show');$('#coverActions').classList.remove('show');
+  void cb.offsetWidth;cb.classList.add('show');
+  setTimeout(()=>{$('#coverTitle').classList.add('show');$('#coverActions').classList.add('show');$('#openBtn').focus({preventScroll:true})},500);
+  applyTheme();
+}
+function startReading(ci){
+  $('#coverBook').classList.add('opening');
+  setTimeout(()=>{coverStage.hidden=true;reader.hidden=false;$('#topTitle').textContent=story.title;build(ci)},reduce?30:620);
+}
+function closeStory(){
+  overlay.classList.remove('visible');document.body.classList.remove('lock');
+  $('#pop').hidden=true;story=null;ready=false;refreshShell();
+}
+$('#openBtn').addEventListener('click',()=>startReading(store.get('p:'+story.id,0)));
+$('#restartBtn').addEventListener('click',()=>startReading(0));
+$('#closeCover').addEventListener('click',closeStory);
+$('#backBtn').addEventListener('click',closeStory);
 
-  // ---------- overlay flow ----------
-  const overlay = document.getElementById('bookOverlay');
-  const coverStage = document.getElementById('coverStage');
-  const readerStage = document.getElementById('readerStage');
-  const coverImg = document.getElementById('coverImg');
-  const openBtn = document.getElementById('openBtn');
+/* ---------- controls ---------- */
+$('#nextBtn').addEventListener('click',()=>flip(1));
+$('#prevBtn').addEventListener('click',()=>flip(-1));
+scrub.addEventListener('input',()=>goTo(+scrub.value));
+document.addEventListener('keydown',e=>{
+  if(!overlay.classList.contains('visible'))return;
+  if(e.key==='Escape'){if(!$('#pop').hidden)$('#pop').hidden=true;else closeStory();return}
+  if(reader.hidden)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();flip(1)}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();flip(-1)}
+});
+/* tap zones + swipe */
+book.addEventListener('click',e=>{
+  if(String(getSelection()).length>0)return;
+  const r=book.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;
+  if(spread)flip(x<.5?-1:1);else flip(x<.33?-1:1);
+});
+let tx=0,ty=0;
+book.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+book.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4){e.preventDefault();flip(dx<0?1:-1)}
+},{passive:false});
 
-  document.getElementById('storyCard').addEventListener('click', ()=>{
-    overlay.classList.add('visible');
-    coverStage.hidden = false;
-    readerStage.hidden = true;
-    coverImg.classList.remove('show');
-    openBtn.classList.remove('show');
-    void coverImg.offsetWidth;
-    coverImg.classList.add('show');
-    setTimeout(()=> openBtn.classList.add('show'), 500);
-  });
-
-  openBtn.addEventListener('click', ()=>{
-    coverStage.hidden = true;
-    readerStage.hidden = false;
-    current = 0;
-    renderPage();
-  });
-
-  document.getElementById('closeBook').addEventListener('click', ()=>{
-    overlay.classList.remove('visible');
-  });
+/* settings */
+const pop=$('#pop');
+$('#setBtn').addEventListener('click',e=>{e.stopPropagation();pop.hidden=!pop.hidden;$('#setBtn').setAttribute('aria-expanded',String(!pop.hidden))});
+pop.addEventListener('click',e=>e.stopPropagation());
+document.addEventListener('click',()=>{pop.hidden=true});
+const setScale=d=>{prefs.scale=Math.max(.85,Math.min(1.45,+(prefs.scale+d).toFixed(2)));store.set('prefs',prefs);applyTheme();if(story&&!reader.hidden&&!busy)build(curCi())};
+$('#fMinus').addEventListener('click',()=>setScale(-.1));
+$('#fPlus').addEventListener('click',()=>setScale(.1));
+document.querySelectorAll('.dot').forEach(d=>d.addEventListener('click',()=>{prefs.theme=d.dataset.t;store.set('prefs',prefs);applyTheme()}));
+document.querySelectorAll('.soundBtn').forEach(b=>b.addEventListener('click',()=>{prefs.sound=!prefs.sound;store.set('prefs',prefs);applyTheme()}));
+applyTheme();
+$('#sMinus').addEventListener('click',()=>setScale(-.1));
+$('#sPlus').addEventListener('click',()=>setScale(.1));
+refreshShell();
+go(location.hash.slice(1),true);
 </script>
 </body>
 </html>
