@@ -85,8 +85,10 @@ button{font-family:inherit;color:inherit}
 .eyebrow{font-family:var(--font-sign);font-style:italic;letter-spacing:.05em;color:var(--gold);font-size:19px;margin-bottom:12px}
 
 /* home */
-.home{min-height:100%;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;align-content:center;align-content:safe center;gap:3vw;padding:0 clamp(28px,6vw,110px)}
-.home h1{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,4.6vw,68px);line-height:1.25;max-width:13ch;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.home{min-height:100%;
+  margin-top: 10px;
+  display:grid;grid-template-columns:1.15fr .85fr;align-items:center;align-content:center;align-content:safe center;gap:3vw;padding:0 clamp(28px,6vw,110px)}
+.home h1{font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.6vw,68px);line-height:1.25;max-width:13ch;text-shadow:0 4px 30px rgba(0,0,0,.4)}
 .poem{margin-top:24px;font-family:var(--font-display);font-style:italic;font-size:clamp(15px,1.5vw,19px);line-height:2;color:#e7d4c2;max-width:540px}
 .poem p{opacity:0}
 .view.on .poem p{animation:lineIn 1s ease forwards}
@@ -103,7 +105,63 @@ button{font-family:inherit;color:inherit}
 @keyframes pointBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 .cname{position:relative;margin-top:10px;font-family:var(--font-sign);font-style:italic;font-weight:600;font-size:19px;color:var(--gold)}
 .cname::before{content:"— "}.cname::after{content:" —"}
+.author-art {
+    gap: 14px;
+    position: relative;
+}
 
+.portrait-frame {
+    width: clamp(220px, 25vw, 350px);
+    aspect-ratio: 4 / 5;
+    padding: 9px;
+    border: 1px solid rgba(246,178,90,.65);
+    border-radius: 180px 180px 24px 24px;
+    background: linear-gradient(145deg, #f6b25a, #5a3556, #a6534a);
+    box-shadow:
+        0 0 0 10px rgba(246,178,90,.06),
+        0 25px 65px rgba(0,0,0,.45);
+    overflow: hidden;
+}
+
+.author-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 175px 175px 17px 17px;
+}
+
+.author-art .cname {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.author-caption {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: #d8c2aa;
+    text-align: center;
+    font-style: italic;
+}
+
+@media(max-width:820px) {
+    .portrait-frame {
+        width: clamp(135px, 38vw, 190px);
+    }
+
+    .author-art {
+        gap: 7px;
+    }
+
+    .author-art .cname {
+        font-size: 19px;
+    }
+
+    .author-caption {
+        font-size: 12px;
+    }
+}
 /* library: all books */
 .libv{min-height:100%;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:clamp(18px,3.2vh,34px);padding:0 clamp(28px,5vw,90px);
   --cw:max(150px,min(240px,calc((100vh - 400px)*.667)))}
@@ -198,6 +256,50 @@ button{font-family:inherit;color:inherit}
 }
 @media(max-height:640px) and (max-width:820px){.art svg{width:90px}.poem p:nth-child(n+3){display:none}.bk-blurb{display:none}.q{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}.poem p{opacity:1}}
+
+/* Full-page homepage background */
+.home-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    z-index: -1;
+    margin-left: 65%;
+
+display:inline-flex;
+    pointer-events: none;
+}
+
+
+
+/* Keep homepage content above background */
+#v-home {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    background: transparent;
+}
+
+#v-home .home {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile adjustment */
+@media(max-width: 820px) {
+    .home-bg-image {
+        object-position: 62% center;
+    }
+
+    .home-bg-overlay {
+        background:
+            linear-gradient(0deg,
+                rgba(25, 16, 31, .95) 0%,
+                rgba(25, 16, 31, .70) 55%,
+                rgba(25, 16, 31, .35) 100%);
+    }
+}
 
 /* ================= OVERLAY ================= */
 .overlay{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .45s ease;
@@ -317,6 +419,127 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-ra
   .bottombar{gap:8px;padding:6px 10px 10px}
   .pop{right:8px}
 }
+
+/* =====================================================
+   HOME HERO IMAGE  (desktop · tablet · mobile)
+===================================================== */
+#v-home{isolation:isolate}              /* no position override: .view stays absolute */
+.home{position:relative}
+.home > :first-child{position:relative;z-index:1}   /* text above the photo */
+.poem{text-shadow:0 2px 14px rgba(0,0,0,.55)}
+
+/* Desktop: photo panel on the right, soft vignette edges */
+.home-background{
+  position:absolute;top:0;right:0;bottom:0;
+  width:min(52%,820px);
+  z-index:0;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:radial-gradient(ellipse 80% 75% at 60% 45%,#000 52%,transparent 100%);
+          mask-image:radial-gradient(ellipse 80% 75% at 60% 45%,#000 52%,transparent 100%);
+}
+.home-bg-image{
+  display:block;width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 22%;           /* keeps the face in frame; adjust the % if needed */
+}
+.home-bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(25,16,31,.6) 0%,rgba(25,16,31,0) 45%);
+}
+
+/* Large desktop */
+@media(min-width:1500px){
+  .home-background{width:min(50%,860px)}
+  .libv{--cw:max(170px,min(280px,calc((100vh - 400px)*.667)))}
+}
+
+/* Tablet landscape / small laptop (sidebar is a rail) */
+@media(min-width:821px) and (max-width:1060px){
+  .home{padding:0 clamp(22px,4vw,44px)}
+  .home > :first-child{max-width:60%}
+  .home-background{width:54%}
+  .author{gap:32px}
+  .aph{width:clamp(170px,24vw,240px)}
+}
+
+/* Short desktop windows / landscape phones with rail */
+@media(min-width:821px) and (max-height:520px){
+  .poem p:nth-child(n+3){display:none}
+  .cta{margin-top:18px}
+}
+
+/* Tablet portrait + phones: photo becomes a hero above the text */
+@media(max-width:820px){
+  .home{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto;
+    align-content:start;
+    align-content:safe center;
+    gap:14px;
+    padding:6px 22px 28px;
+  }
+  .home > :first-child{max-width:560px}
+  .home-background{
+    position:relative;inset:auto;order:-1;
+    width:min(100%,460px);
+    height:clamp(220px,38dvh,420px);
+    border-radius:26px;
+    -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);
+            mask-image:linear-gradient(180deg,#000 62%,transparent 100%);
+  }
+  .home-bg-image{object-position:center 18%}
+  .home-bg-overlay{background:linear-gradient(0deg,rgba(25,16,31,.55),transparent 55%)}
+}
+
+/* Phone landscape (drawer layout): photo beside the text */
+@media(max-width:820px) and (orientation:landscape){
+  .home{
+    grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+    grid-template-rows:auto;
+    align-items:center;justify-items:stretch;
+    text-align:left;gap:20px;padding:0 24px 12px;
+  }
+  .home-background{order:0;width:100%;height:min(78dvh,320px)}
+  .cta{justify-content:flex-start}
+}
+
+/* Small phones */
+@media(max-width:380px){
+  .home{padding:4px 16px 24px}
+  .home-background{height:clamp(190px,32dvh,300px);border-radius:20px}
+  .cta .btn{flex:1 1 100%}
+  .set-card{padding:18px}
+  .srow{flex-wrap:wrap}
+}
+
+/* =====================================================
+   GENERAL RESPONSIVE POLISH
+===================================================== */
+.tbtn{min-height:40px}                              /* touch-friendly targets */
+.mbtn{min-width:44px;min-height:44px}
+.pop{max-width:calc(100vw - 24px)}
+.bottombar{padding-bottom:max(14px,env(safe-area-inset-bottom))}
+
+/* cover never overflows short screens (landscape phones) */
+.cover-book{width:min(70vw,290px,calc((100dvh - 190px)*.667))}
+@media(max-height:520px){
+  .cover-stage{gap:12px;padding:12px}
+  .cover-title{font-size:17px}
+}
+
+/* no sticky "hover tilt" on touch devices */
+@media(hover:none){
+  .bk:not(.soon):hover .bk-cover{transform:none;box-shadow:0 22px 40px rgba(0,0,0,.5),inset 4px 0 7px rgba(0,0,0,.28)}
+  .btn:hover{transform:none;box-shadow:none}
+}
+
+/* small phones: reader chrome */
+@media(max-width:380px){
+  .topbar{padding:0 8px}
+  .tt{font-size:14px}
+  .tbtn{padding:8px 10px;font-size:12.5px}
+  .bottombar .tbtn{padding:8px 10px}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
   .poem p{opacity:1}
@@ -361,34 +584,27 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-ra
       <div class="home">
         <div>
           <p class="eyebrow">ऋषिकेश की कलम से</p>
-          <h1>ऋषिकेश की चाय लेखनी में फिर स्वागत है</h1>
+
           <div class="poem">
-            <p>बनारस की शाम है, गंगा किनारे चाय का प्याला है,</p>
-            <p>एक चुस्की तुम्हारी, एक घूँट हमारा — और सामने गंगा की धारा है।</p>
-            <p>कुछ बातें हों, कुछ ख़ामोशियाँ, और घाट की सीढ़ियों पर ठहरता हुआ वक़्त,</p>
-            <p>आइए, थोड़ी देर बैठिए यहाँ — शायद इसी चाय में कोई कहानी फिर से हमारा इंतज़ार कर रही है।</p>
+          <p>बनारस की शाम है, गंगा का किनारा है, हाथों में चाय का प्याला और सामने एक ख़ूबसूरत नज़ारा है।</p>
+<p>कुछ चाय की चुस्कियाँ हों, कुछ दिल की बातें और थोड़ी-सी मोहब्बत भरी ख़ामोशियाँ।</p>
+<p>जब तक चाय ख़त्म हो, चलिए कहानियों की दुनिया में थोड़ा घूम आते हैं — जहाँ कुछ इश्क़ है, कुछ ख़्वाब हैं और कुछ अधूरी दास्तानें।</p>
+<p>तो आइए, चाय आप पीजिए, कहानियाँ मैं सुनाता हूँ... शायद किसी किरदार में आपको अपनी कहानी भी मिल जाए। ❤️</p>
           </div>
           <div class="cta">
             <button class="btn" id="homeRead">पढ़ना शुरू करें</button>
             <button class="btn ghost" data-go="library">पुस्तकालय देखें</button>
           </div>
         </div>
-        <div class="art">
-          <svg viewBox="0 0 170 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="85" cy="182" rx="46" ry="7" fill="#000" opacity=".18"/>
-      <path d="M50 190 L58 118 C58 100 112 100 112 118 L120 190 Z" fill="#a6534a"/>
-      <rect x="58" y="112" width="54" height="14" rx="4" fill="#8a4340"/>
-      <circle cx="85" cy="78" r="30" fill="#e0a978"/>
-      <path d="M55 72 C55 46 115 46 115 72 C115 58 100 50 85 50 C70 50 55 58 55 72 Z" fill="#3b2a20"/>
-      <rect x="66" y="76" width="16" height="8" rx="4" fill="none" stroke="#3b2a20" stroke-width="2.5"/>
-      <rect x="88" y="76" width="16" height="8" rx="4" fill="none" stroke="#3b2a20" stroke-width="2.5"/>
-      <line x1="82" y1="80" x2="88" y2="80" stroke="#3b2a20" stroke-width="2.5"/>
-      <path d="M70 96 Q85 104 100 96" stroke="#5a3d2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <g class="char-arm-point"><path d="M62 118 C50 130 46 150 52 168" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/></g>
-      <g class="char-arm-wave"><path d="M108 118 C122 108 132 90 128 70" stroke="#e0a978" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="128" cy="68" r="8" fill="#e0a978"/></g>
-    </svg>
-          <span class="cname">R. D. Tiwari</span>
-        </div>
+       
+<div class="home-background">
+    <img src="Golden-Hour River Portrait.png"
+         alt="R. D. Tiwari beside the Ganga"
+         class="home-bg-image">
+
+    <div class="home-bg-overlay"></div>
+</div>
+
       </div>
     </section>
 
@@ -401,19 +617,51 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-ra
 
     <section class="view" id="v-author">
       <div class="author">
-       <div class="aph" id="aPhoto">
-  <img src="/r1.jpeg" alt="Author Photo">
+       <div class="home-background" id="aPhoto">
+  <img src="Riverside Devotee at Golden Hour.png" alt="Author Photo">
 </div>
-        <div>
-          <p class="eyebrow">कलम के पीछे</p>
-          <h2 id="aName"></h2>
-          <p class="role" id="aRole"></p>
-          <div class="intro" id="aIntro"></div>
-          <blockquote class="q">दो कप चाय, तुम, हम और बहुत सारी अनगिनत बातें, जो शुरू यहीं से होती हैं—
-“तुमको पता है, आज क्या हुआ?”</blockquote>
-          <p class="sign">With lots of love,<br>Stay happy, healthy &amp; positive.</p>
-          <p class="stat" id="aStat"></p>
+      
+<div class="author-details">
+    <p class="eyebrow">कलम के पीछे</p>
+    <h2 id="aName"></h2>
+    <p class="role" id="aRole"></p>
+    <div class="intro" id="aIntro"></div>
+
+    <blockquote class="q">
+        दो कप चाय, तुम, हम और बहुत सारी अनगिनत बातें,
+        जो शुरू यहीं से होती हैं—
+        “तुमको पता है, आज क्या हुआ?”
+        
+    </blockquote>
+
+    <p class="sign">
+        With lots of love,<br>
+        Stay happy, healthy &amp; positive.
+    </p>
+
+    <p class="stat" id="aStat"></p>
+
+    <div class="author-contact">
+        <p class="eyebrow">आइए, जुड़ते हैं</p>
+
+        <div class="contact-item">
+            <i class="bi bi-envelope"></i>
+            <div>
+                <span>Email</span>
+                <a href="mailto:your@email.com">forv459@gmail.com</a>
+            </div>
         </div>
+
+        <div class="contact-item">
+            <i class="bi bi-geo-alt"></i>
+            <div>
+                <span>Currently Based In: </span>
+                <p>The City of Lakes - Bhopal, Madhya Pradesh, India</p>
+            </div>
+        </div>
+    </div>
+</div>
+
       </div>
     </section>
 
@@ -467,7 +715,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-ra
 
 /* ---------- लेखक का परिचय: यहाँ अपनी जानकारी भरिए ---------- */
 const AUTHOR={
-  name:'R. D. Tiwari',
+  name:'Rishikesh Devendra Tiwari',
   role:'लेखक',                 // जैसे: 'लेखक · कवि'
   photo:'author.jpg',          // अपनी फ़ोटो इसी नाम से index.html के पास रखिए (न मिले तो चित्र दिखेगा)
   intro:[                      // हर पंक्ति एक अनुच्छेद है, जैसे: 'मैं ऋषिकेश…',
